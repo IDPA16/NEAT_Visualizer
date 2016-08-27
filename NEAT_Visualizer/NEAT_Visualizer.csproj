@@ -174,7 +174,24 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Views\MainWindow.xaml" />
+    <Compile Include="Business\IVisualizerBusiness.cs" />
+    <Compile Include="Business\VisualizerBusiness.cs" />
+    <Compile Include="Interaction\Services\IInteractionProvider.cs" />
+    <Compile Include="Interaction\Services\InteractionProvider.cs" />
+    <Compile Include="Interaction\UserInteractions\InteractionRequest.cs" />
+    <Compile Include="Interaction\UserInteractions\UserInteractionOptions.cs" />
+    <Compile Include="Interaction\UserInteractions\IUserInteraction.cs" />
+    <Compile Include="Interaction\UserInteractions\UserInteraction.cs" />
+    <Compile Include="Interaction\UserInteractions\UserInteractionRequestedEventArgs.cs" />
+    <Compile Include="Model\Connection.cs" />
+    <Compile Include="Model\Generation.cs" />
+    <Compile Include="Model\NeuralNetwork.cs" />
+    <Compile Include="Model\Neuron.cs" />
+    <Compile Include="Model\Species.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\Dialogs\DialogWindow.xaml.cs">
+      <DependentUpon>DialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -184,8 +201,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Business\" />
-    <Folder Include="Model\" />
+    <Folder Include="UserControls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Dialogs\DialogWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

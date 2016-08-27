@@ -1,12 +1,7 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Diagnostics;
-using Avalonia.Logging.Serilog;
-using Avalonia.Themes.Default;
 using Avalonia.Markup.Xaml;
 using NEAT_Visualizer.Views;
-using Serilog;
 
 namespace NEAT_Visualizer
 {

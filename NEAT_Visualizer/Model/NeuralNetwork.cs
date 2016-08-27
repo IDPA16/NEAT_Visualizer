@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace JNF_NEAT_Visualizer.Model
+namespace NEAT_Visualizer.Model
 {
   public class NeuralNetwork
   {

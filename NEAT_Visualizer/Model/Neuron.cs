@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace JNF_NEAT_Visualizer.Model
+namespace NEAT_Visualizer.Model
 {
   public class Neuron
   {

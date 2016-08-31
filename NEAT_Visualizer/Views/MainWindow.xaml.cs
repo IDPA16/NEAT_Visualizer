@@ -9,6 +9,8 @@ namespace NEAT_Visualizer.Views
     {
       this.InitializeComponent();
       App.AttachDevTools(this);
+
+      this.LogicalChildren.Add(new Button());
     }
 
     private void InitializeComponent()

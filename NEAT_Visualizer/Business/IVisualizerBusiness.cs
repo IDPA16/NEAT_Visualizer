@@ -1,4 +1,4 @@
-﻿using NEAT_Visualizer.Business.DataHandling;
+﻿using NEAT_Visualizer.Business.DataLoaders;
 
 namespace NEAT_Visualizer.Business
 {

@@ -1,4 +1,5 @@
-﻿using Avalonia;
+﻿using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Diagnostics;
 using Avalonia.Logging.Serilog;
@@ -20,17 +21,35 @@ namespace NEAT_Visualizer
     {
       InitializeLogging();
 
-      #if __WINAPI
-      AppBuilder.Configure<App>()
-          .UseWin32()
-          .UseDirect2D1()
-          .Start<MainWindow>();
-      #else
-      AppBuilder.Configure<App>()
-          .UseGtk()
-          .UseCairo()
-          .Start<MainWindow>();
-      #endif
+      if (IsWindows() && !UseGtkOnWindows())
+      {
+        AppBuilder.Configure<App>()
+            .UseWin32()
+            .UseDirect2D1()
+            .Start<MainWindow>();
+      }
+      else
+      {
+        // on mac, unix, and if chosen on windows, use Gtk
+        AppBuilder.Configure<App>()
+            .UseGtk()
+            .UseCairo()
+            .Start<MainWindow>();
+      }
+    }
+
+    private static bool UseGtkOnWindows()
+    {
+      // change this to true if gtk should be used
+      return false;
+    }
+
+    private static bool IsWindows()
+    {
+      return Environment.OSVersion.Platform == PlatformID.Win32Windows ||
+             Environment.OSVersion.Platform == PlatformID.Win32NT ||
+             Environment.OSVersion.Platform == PlatformID.Win32S ||
+             Environment.OSVersion.Platform == PlatformID.WinCE;
     }
 
     public static void AttachDevTools(Window window)

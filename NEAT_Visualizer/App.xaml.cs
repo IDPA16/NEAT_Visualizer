@@ -10,7 +10,6 @@ namespace NEAT_Visualizer
 {
   class App : Application
   {
-
     public override void Initialize()
     {
       AvaloniaXamlLoader.Load(this);
@@ -20,10 +19,18 @@ namespace NEAT_Visualizer
     static void Main(string[] args)
     {
       InitializeLogging();
+
+      #if __WINAPI
       AppBuilder.Configure<App>()
           .UseWin32()
           .UseDirect2D1()
           .Start<MainWindow>();
+      #else
+      AppBuilder.Configure<App>()
+          .UseGtk()
+          .UseCairo()
+          .Start<MainWindow>();
+      #endif
     }
 
     public static void AttachDevTools(Window window)

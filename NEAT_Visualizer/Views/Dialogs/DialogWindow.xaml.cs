@@ -15,12 +15,12 @@ namespace NEAT_Visualizer.Views.Dialogs
     public DialogWindow(IUserInteraction interaction)
     {
       this.interaction = interaction;
-      this.DataContext = interaction.Content;
+      this.DataContext = interaction/*.Content*/;
 
       this.InitializeComponent();
 
       root = this.Find<IPanel>("Root");
-      this.Title = interaction.Title;
+      //this.Title = interaction.Title;
       App.AttachDevTools(this);
 
       AddButtons(interaction.UserInteractionOptions);

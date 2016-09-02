@@ -1,8 +1,8 @@
-﻿<Window xmlns="https://github.com/avaloniaui" MinWidth="500" MinHeight="300">
+﻿<Window xmlns="https://github.com/avaloniaui" MinWidth="300" MinHeight="200" Title="{Binding Title}">
   <DockPanel Name="Root">
-    <StackPanel Orientation="Horizontal" Name="ButtonBar">
-      
+    <StackPanel Orientation="Horizontal" Name="ButtonBar" DockPanel.Dock="Bottom" Height="30">
+      <!-- buttons are dynamically added from code-behind -->
     </StackPanel>
-    <ContentPresenter Content="{Binding}" DockPanel.Dock="Top" />
+    <ContentPresenter Content="{Binding Content}" DockPanel.Dock="Top" />
   </DockPanel>
 </Window>

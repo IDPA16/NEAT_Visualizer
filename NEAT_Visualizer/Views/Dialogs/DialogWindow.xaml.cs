@@ -16,9 +16,13 @@ namespace NEAT_Visualizer.Views.Dialogs
     {
       this.interaction = interaction;
       this.DataContext = interaction.Content;
+
       this.InitializeComponent();
+
       root = this.Find<IPanel>("Root");
+      this.Title = interaction.Title;
       App.AttachDevTools(this);
+
       AddButtons(interaction.UserInteractionOptions);
     }
 

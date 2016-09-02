@@ -190,9 +190,6 @@
     <Compile Include="Model\Neuron.cs" />
     <Compile Include="Model\Species.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="Views\Dialogs\DialogButton.xaml.cs">
-      <DependentUpon>DialogButton.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Dialogs\DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>
@@ -209,11 +206,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Dialogs\DialogWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\Dialogs\DialogButton.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

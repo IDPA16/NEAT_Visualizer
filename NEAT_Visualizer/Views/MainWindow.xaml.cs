@@ -8,7 +8,7 @@ namespace NEAT_Visualizer.Views
 {
   public class MainWindow : Window
   {
-    private Panel rootPanel;
+    private IPanel rootPanel;
 
     public MainWindow()
     {

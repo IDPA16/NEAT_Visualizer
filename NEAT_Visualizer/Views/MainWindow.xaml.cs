@@ -3,6 +3,8 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using NEAT_Visualizer.Interaction.Services;
+using NEAT_Visualizer.Interaction.UserInteractions;
+using NEAT_Visualizer.ViewModels;
 
 namespace NEAT_Visualizer.Views
 {
@@ -24,11 +26,19 @@ namespace NEAT_Visualizer.Views
       button.Click += ButtonOnClick; 
       //obv, this should be handled in the viewmodel, not in an eventhandler.
       //this is just for testing/trying out.
+      this.DataContext = new MainWindowViewModel();
     }
 
     private void ButtonOnClick(object sender, RoutedEventArgs e)
     { 
       (sender as Button).Content = "Wehew!";
+      MainWindowViewModel.ShowInfoInteractionRequest.Raise(new UserInteraction()
+      {
+        Title = "wuwuuw",
+        Content = "Some text that is important",
+        UserInteractionOptions = UserInteractionOptions.Ok
+      });
+
     }
 
     private void InitializeComponent()

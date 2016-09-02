@@ -8,9 +8,9 @@ namespace NEAT_Visualizer.Views.Dialogs
 {
   public class DialogWindow : Window
   {
-    private IUserInteraction interaction;
+    private readonly IUserInteraction interaction;
 
-    private IPanel root;
+    private readonly IPanel root;
 
     public DialogWindow(IUserInteraction interaction)
     {

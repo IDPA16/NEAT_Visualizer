@@ -1,4 +1,5 @@
 ﻿using NEAT_Visualizer.Interaction.UserInteractions;
+using NEAT_Visualizer.Views.Dialogs;
 
 namespace NEAT_Visualizer.Interaction.Services
 {
@@ -12,7 +13,7 @@ namespace NEAT_Visualizer.Interaction.Services
 
     private void DisplayInteraction(object sender, UserInteractionRequestedEventArgs e)
     {
-      throw new System.NotImplementedException();
+      new DialogWindow(e.Context).Show();
     }
 
   }

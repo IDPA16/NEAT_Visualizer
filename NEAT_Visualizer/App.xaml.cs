@@ -23,6 +23,8 @@ namespace NEAT_Visualizer
 
       if (IsWindows() && !UseGtkOnWindows())
       {
+        new Bootstrapper().InitializeApplication();
+
         AppBuilder.Configure<App>()
             .UseWin32()
             .UseDirect2D1()

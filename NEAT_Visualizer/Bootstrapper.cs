@@ -1,4 +1,5 @@
 ﻿using NEAT_Visualizer.Interaction.Services;
+using NEAT_Visualizer.Interaction.UserInteractions;
 using NEAT_Visualizer.ViewModels;
 
 namespace NEAT_Visualizer
@@ -13,12 +14,12 @@ namespace NEAT_Visualizer
     public void InitializeApplication()
     {
       interactionProvider = new InteractionProvider();
-      RegisterInteractionRequests();
+      InteractionRequest.InteractionRequestAdded += InteractionRequest_InteractionRequestAdded;
     }
 
-    private void RegisterInteractionRequests()
+    private void InteractionRequest_InteractionRequestAdded(object sender, InteractionRequestAddedEventArgs e)
     {
-      interactionProvider.RegisterInteraction(MainWindowViewModel.ShowInfoInteractionRequest);
+      interactionProvider.RegisterInteraction(e.AddedInteraction);
     }
   }
 }

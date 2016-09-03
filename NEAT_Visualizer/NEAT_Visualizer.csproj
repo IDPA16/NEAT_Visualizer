@@ -181,6 +181,7 @@
     <Compile Include="Interaction\Services\IInteractionProvider.cs" />
     <Compile Include="Interaction\Services\InteractionProvider.cs" />
     <Compile Include="Interaction\UserInteractions\InteractionRequest.cs" />
+    <Compile Include="Interaction\UserInteractions\InteractionRequestAddedEventArgs.cs" />
     <Compile Include="Interaction\UserInteractions\UserInteractionOptions.cs" />
     <Compile Include="Interaction\UserInteractions\IUserInteraction.cs" />
     <Compile Include="Interaction\UserInteractions\UserInteraction.cs" />

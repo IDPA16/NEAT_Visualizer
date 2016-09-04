@@ -4,7 +4,7 @@ using NEAT_Visualizer.Model;
 
 namespace NEAT_Visualizer.Business.DataLoaders
 {
-  public interface INetworkLoader
+  public interface IGenerationLoader
   {
     Generation LoadGeneration(FileInfo fileName);
 

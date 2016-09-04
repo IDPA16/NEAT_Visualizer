@@ -4,6 +4,6 @@ namespace NEAT_Visualizer.Business
 {
   public interface IVisualizerBusiness
   {
-    INetworkLoader NetworkLoader { get; }
+    IGenerationLoader NetworkLoader { get; }
   }
 }

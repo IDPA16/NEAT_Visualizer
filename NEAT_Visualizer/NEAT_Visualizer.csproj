@@ -178,8 +178,10 @@
     </Compile>
     <EmbeddedResource Include="Views\MainWindow.xaml" />
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Business\DataLoaders\INetworkLoader.cs" />
-    <Compile Include="Business\DataLoaders\NetworkLoader.cs" />
+    <Compile Include="Business\DataLoaders\IGenerationLoader.cs" />
+    <Compile Include="Business\DataLoaders\GenerationLoader.cs" />
+    <Compile Include="Business\DataLoaders\JsonRepresentation.cs" />
+    <Compile Include="Business\DataLoaders\JsonToModelMapper.cs" />
     <Compile Include="Business\IVisualizerBusiness.cs" />
     <Compile Include="Business\VisualizerBusiness.cs" />
     <Compile Include="Interaction\Services\IInteractionProvider.cs" />

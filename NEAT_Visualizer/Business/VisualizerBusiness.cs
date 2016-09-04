@@ -4,11 +4,11 @@ namespace NEAT_Visualizer.Business
 {
   public class VisualizerBusiness : IVisualizerBusiness
   {
-    public VisualizerBusiness(INetworkLoader networkLoader)
+    public VisualizerBusiness(IGenerationLoader networkLoader)
     {
       NetworkLoader = networkLoader;
     }
 
-    public INetworkLoader NetworkLoader { get; }
+    public IGenerationLoader NetworkLoader { get; }
   }
 }

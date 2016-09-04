@@ -6,10 +6,8 @@ namespace NEAT_Visualizer.Business.DataLoaders
 {
   public interface INetworkLoader
   {
-    NeuralNetwork GetNetwork(FileInfo fileName);
+    Generation LoadGeneration(FileInfo fileName);
 
-    Species LoadSpecies(DirectoryInfo directory);
-
-    List<Species> LoadFullNeatData(DirectoryInfo rootDirectory);
+    List<Generation> LoadAllGenerations(DirectoryInfo directory);
   }
 }

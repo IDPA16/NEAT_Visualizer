@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 using NEAT_Visualizer.Model;
 
 namespace NEAT_Visualizer.Business.DataLoaders
 {
-  public class NetworkLoader : INetworkLoader
+  public class GenerationLoader : IGenerationLoader
   {
     private class JsonRepresentation
     {
@@ -83,20 +84,16 @@ namespace NEAT_Visualizer.Business.DataLoaders
       }
     }
 
-    public NeuralNetwork GetNetwork(FileInfo fileName)
+    public Generation LoadGeneration(FileInfo fileName)
     {
       string json = File.ReadAllText(fileName.FullName);
-      //JsonRepresentation.Rootobject;
-
+      var jsonRepresentation = JsonConvert.DeserializeObject<JsonRepresentation.Rootobject>(json);
+      int generation = jsonRepresentation.generationsPassed;
+      
       return null;
     }
 
-    public Species LoadSpecies(DirectoryInfo directory)
-    {
-      throw new NotImplementedException();
-    }
-
-    public List<Species> LoadFullNeatData(DirectoryInfo rootDirectory)
+    public List<Generation> LoadAllGenerations(DirectoryInfo directory)
     {
       throw new NotImplementedException();
     }

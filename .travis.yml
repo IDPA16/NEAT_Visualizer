@@ -1,0 +1,5 @@
+language: csharp
+solution: NEAT_Visualizer.sln
+install:
+  - sudo apt-get install -y gtk-sharp2
+

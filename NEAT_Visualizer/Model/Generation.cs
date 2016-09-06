@@ -4,16 +4,18 @@ namespace NEAT_Visualizer.Model
 {
   public class Generation
   {
-    public Generation(uint generationsPassed, uint generationSize, IList<Species> species)
+    public Generation() : this(0, 0, new List<Species>()) { }
+
+    public Generation(int generationsPassed, int populationSize, IList<Species> species)
     {
       GenerationsPassed = generationsPassed;
-      GenerationSize = generationSize;
+      PopulationSize = populationSize;
       Species = species;
     }
 
-    public uint GenerationSize { get; set; }
+    public int PopulationSize { get; set; }
 
-    public uint GenerationsPassed { get; set; }
+    public int GenerationsPassed { get; set; }
 
     public IList<Species> Species { get; set; }
   }

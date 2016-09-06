@@ -5,13 +5,9 @@ namespace NEAT_Visualizer.Model
 {
   public class Neuron
   {
-    public Neuron(IList<Connection> incomingConnections = null)
-    {
-      IncomingConnections = incomingConnections ?? new List<Connection>();
-    }
+    public Neuron(IList<Connection> incomingConnections) { IncomingConnections = incomingConnections; }
 
-    [Obsolete("Neurons have no historical marking")]
-    public ulong HistoricalMarking { get; set; }
+    public Neuron() : this(new List<Connection>()) { }
 
     public IList<Connection> IncomingConnections { get; }
 
@@ -19,8 +15,7 @@ namespace NEAT_Visualizer.Model
     /// Gets or sets the layer.
     /// </summary>
     /// <value>Layer, inputs neurons (and bias) have 0, outputs the highest layer</value>
-    public uint Layer { get; set; }
+    public int Layer { get; set; }
   }
-
 }
 

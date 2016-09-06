@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Diagnostics;
 using Avalonia.Logging.Serilog;
 using Avalonia.Markup.Xaml;
+using NEAT_Visualizer.Business.DataLoaders;
 using NEAT_Visualizer.Views;
 using Serilog;
 
@@ -19,6 +21,10 @@ namespace NEAT_Visualizer
 
     static void Main(string[] args)
     {
+      //IGenerationLoader loader = new GenerationLoader();
+      //var generation = loader.LoadGeneration(new FileInfo(@"../../../JsonExamples/generation_1.json"));
+      //System.Diagnostics.Debugger.Break();
+
       InitializeLogging();
       new Bootstrapper().InitializeApplication();
 

@@ -21,10 +21,6 @@ namespace NEAT_Visualizer
 
     static void Main(string[] args)
     {
-      //IGenerationLoader loader = new GenerationLoader();
-      //var generation = loader.LoadGeneration(new FileInfo(@"../../../JsonExamples/generation_1.json"));
-      //System.Diagnostics.Debugger.Break();
-
       InitializeLogging();
       new Bootstrapper().InitializeApplication();
 

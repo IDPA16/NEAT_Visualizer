@@ -33,7 +33,7 @@ namespace NEAT_Visualizer.ViewModels
     #region InteractionRequests
     public static InteractionRequest ShowInfoInteractionRequest { get; } = InteractionRequest.Register();
     #endregion
-    #region Commands
+    #region ICommands
     public ICommand OpenFileCommand { get; private set; } 
 
     public ICommand OpenFolderCommand { get; private set; }

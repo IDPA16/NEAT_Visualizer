@@ -39,7 +39,7 @@ namespace NEAT_Visualizer.ViewModels
     public ICommand OpenFolderCommand { get; private set; }
     #endregion
     #region Properties
-    public int SelectedGeneration
+    public int SelectedGeneration // { get; set; }
     {
       get { return selectedGeneration; }
       set
@@ -54,7 +54,7 @@ namespace NEAT_Visualizer.ViewModels
       }
     }
 
-    public int SelectedSpecies
+    public int SelectedSpecies // { get; set; }
     {
       get { return selectedSpecies; }
       set

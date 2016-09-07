@@ -8,9 +8,11 @@ namespace NEAT_Visualizer.Business.DataLoaders
   {
     public static Generation ToModel(this JsonRepresentation.Rootobject jsonRoot)
     {
-      var generation = new Generation();
-      generation.GenerationsPassed = jsonRoot.generationsPassed;
-      generation.PopulationSize = jsonRoot.populationSize;
+      var generation = new Generation
+      {
+        GenerationsPassed = jsonRoot.generationsPassed,
+        PopulationSize = jsonRoot.populationSize
+      };
 
       foreach (var species in jsonRoot.species)
       {

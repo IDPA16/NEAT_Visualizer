@@ -11,7 +11,7 @@ using Serilog;
 
 namespace NEAT_Visualizer
 {
-  class App : Application
+  internal class App : Application
   {
     public override void Initialize()
     {

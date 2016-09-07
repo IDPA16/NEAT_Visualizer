@@ -2,18 +2,16 @@
   <DockPanel LastChildFill="True" Name="Root">
     <Menu DockPanel.Dock="Top" Height="20">
       <MenuItem Header="File">
-          <MenuItem Header="Open from file" />
-          <MenuItem Header="Open from folder" />
-          <MenuItem Header="Close" />
+        <MenuItem Header="Open from file" />
+        <MenuItem Header="Open from folder" />
+        <MenuItem Header="Close" />
       </MenuItem>
     </Menu>
-    
-    <Canvas DockPanel.Dock="Right" Name="Canvas" />
-    
     <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
       <ListBox Items="{Binding Generations}" SelectedIndex="{Binding SelectedGeneration, Mode=TwoWay}" Width="100" BorderThickness="1" />
       <ListBox Items="{Binding Species}" SelectedIndex="{Binding SelectedSpecies, Mode=TwoWay}" Width="100" BorderThickness="1" Margin="-1,0,0,0" />
-      <ListBox Items="{Binding Networks}" SelectedIndex="{Binding SelectedNetwork, Mode=TwoWay}" Width="100" BorderThickness="1" Margin="-1,0,0,0" />    
+      <ListBox Items="{Binding Networks}" SelectedIndex="{Binding SelectedNetwork, Mode=TwoWay}" Width="100" BorderThickness="1" Margin="-1,0,0,0" />
     </StackPanel>
+    <Canvas DockPanel.Dock="Right" Name="Canvas" />
   </DockPanel>
 </Window>

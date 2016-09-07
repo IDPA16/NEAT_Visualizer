@@ -3,9 +3,11 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using NEAT_Visualizer.Interaction.Commands;
 using NEAT_Visualizer.Interaction.UserInteractions;
+using PropertyChanged;
 
 namespace NEAT_Visualizer.ViewModels
 {
+  [ImplementPropertyChanged]
   public class MainWindowViewModel : ViewModelBase
   {
     //private const char DELIMITER = '\t';
@@ -14,7 +16,7 @@ namespace NEAT_Visualizer.ViewModels
 
     private int selectedSpecies = 0;
 
-    private int selectedNetwork = 0;
+    //private int selectedNetwork = 0;
     #endregion
     #region ctors and initializers
     public MainWindowViewModel()
@@ -66,15 +68,7 @@ namespace NEAT_Visualizer.ViewModels
       }
     }
 
-    public int SelectedNetwork
-    {
-      get { return selectedNetwork; }
-      set
-      {
-        selectedNetwork = value;
-        OnPropertyChanged();
-      }
-    }
+    public int SelectedNetwork { get; set; }
 
     public ObservableCollection<string> Generations { get; set; } = new ObservableCollection<string>() { " 1\t32", " 2\t110", " 3\t110" };
 

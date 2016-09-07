@@ -2,7 +2,7 @@
 {
   public class Connection
   {
-    public Connection(Neuron neuron, float weight, ulong historicalMarking = 0)
+    public Connection(Neuron neuron, float weight, int historicalMarking = 0)
     {
       Neuron = neuron;
       Weight = weight;
@@ -13,7 +13,7 @@
 
     public float Weight { get; }
 
-    public ulong HistoricalMarking { get; }
+    public int HistoricalMarking { get; }
 
     public override string ToString()
     {

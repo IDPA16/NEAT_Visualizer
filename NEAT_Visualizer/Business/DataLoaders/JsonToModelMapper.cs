@@ -12,40 +12,48 @@ namespace NEAT_Visualizer.Business.DataLoaders
       generation.GenerationsPassed = jsonRoot.generationsPassed;
       generation.PopulationSize = jsonRoot.populationSize;
 
-      foreach (var organism in jsonRoot.species)
+      foreach (var species in jsonRoot.species)
       {
-        generation.Species.Add(organism.ToModel());
+        generation.Species.Add(species.ToModel());
       }
-
 
       return generation;
     }
 
-    private static Species ToModel(this JsonRepresentation.Species representation)
+    private static Species ToModel(this JsonRepresentation.Species speciesRepresentation)
     {
       var species = new Species();
 
-      foreach (var population in representation.population)
+      foreach (var population in speciesRepresentation.population)
       {
-        var neuralNetwork = new NeuralNetwork
-        {
-          Neurons = population.network.neurons.ToModel(),
-          Fitness = population.fitness,
-          FitnessModifier = population.fitnessModifier
-        };
-
-        species.Networks.Add(neuralNetwork);
+        species.Networks.Add(CreateNetworkFromData(population));
       }
 
       return species;
     }
 
-    private static List<Neuron> ToModel(this JsonRepresentation.Neuron1[] network)
+    private static NeuralNetwork CreateNetworkFromData(this JsonRepresentation.Population organism)
     {
-      //network.Select(neuron => neuron.layer))
-      return null;
-    }
+      var network = new NeuralNetwork
+      {
+        Fitness = organism.fitness,
+        FitnessModifier = organism.fitnessModifier
+      };
 
-    //private static -> create connections from genoms-....
+      var neurons = organism.network.neurons.Select(n => new Neuron() {Layer = n.layer}).ToList();
+
+      // creates the connections from the genomes
+      foreach (var genome in organism.network.genome)
+      {
+        if (genome.isEnabled)
+        {
+          neurons[genome.to].IncomingConnections.Add(
+            new Connection(neurons[genome.from], genome.weight, genome.historicalMarking));
+        }
+      }
+
+      network.Neurons = neurons;
+      return network;
+    }
   }
 }

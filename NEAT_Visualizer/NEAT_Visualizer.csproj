@@ -184,6 +184,7 @@
     <Compile Include="Business\DataLoaders\JsonToModelMapper.cs" />
     <Compile Include="Business\IVisualizerBusiness.cs" />
     <Compile Include="Business\VisualizerBusiness.cs" />
+    <Compile Include="Interaction\Commands\DelegateCommand.cs" />
     <Compile Include="Interaction\Services\IInteractionProvider.cs" />
     <Compile Include="Interaction\Services\InteractionProvider.cs" />
     <Compile Include="Interaction\UserInteractions\InteractionRequest.cs" />

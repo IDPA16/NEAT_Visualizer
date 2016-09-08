@@ -18,19 +18,19 @@ namespace NEAT_Visualizer.Interaction.Commands
 
     public bool CanExecute(object parameter)
     {
-      return this.canExecute == null || this.canExecute();
+      return canExecute == null || canExecute();
     }
 
     public event EventHandler CanExecuteChanged;
 
     public void RaiseCanExecuteChanged()
     {
-      this.CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+      CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Execute(object parameter)
     {
-      this.execute?.Invoke();
+      execute?.Invoke();
     }
   }
 
@@ -49,19 +49,19 @@ namespace NEAT_Visualizer.Interaction.Commands
 
     public bool CanExecute(object parameter)
     {
-      return this.canExecute == null || this.canExecute();
+      return canExecute == null || canExecute();
     }
 
     public event EventHandler CanExecuteChanged;
 
     public void RaiseCanExecuteChanged()
     {
-      this.CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+      CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Execute(object parameter)
     {
-      this.execute?.Invoke((T)parameter);
+      execute?.Invoke((T)parameter);
     }
   }
 }

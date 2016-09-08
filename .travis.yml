@@ -1,7 +1,6 @@
 language: csharp
 solution: NEAT_Visualizer.sln
-addons:
-  apt:
-    packages:
-      - gtk-sharp2
+install:
+  - sudo apt-get install -y gtk-sharp2
+  - nuget restore NEAT_Visualizer.sln
 

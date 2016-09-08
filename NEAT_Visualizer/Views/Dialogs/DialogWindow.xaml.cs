@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using NEAT_Visualizer.Interaction.UserInteractions;
+using PropertyChanged;
 
 namespace NEAT_Visualizer.Views.Dialogs
 {
+  [DoNotNotify]
   public class DialogWindow : Window
   {
     private readonly IUserInteraction interaction;

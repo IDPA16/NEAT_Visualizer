@@ -5,13 +5,17 @@ using Avalonia.Markup.Xaml;
 using NEAT_Visualizer.Interaction.Services;
 using NEAT_Visualizer.Interaction.UserInteractions;
 using NEAT_Visualizer.ViewModels;
+using PropertyChanged;
 
 namespace NEAT_Visualizer.Views
 {
+  [DoNotNotify]
   public class MainWindow : Window
   {
-    public MainWindow()
+    public MainWindow(MainWindowViewModel viewModel)
     {
+      DataContext = viewModel;
+
       InitializeComponent();
       App.AttachDevTools(this);
 
@@ -23,7 +27,6 @@ namespace NEAT_Visualizer.Views
       //rootPanel.Children.Add(button);
       //button.Click += ButtonOnClick;
       //Canvas canvas = this.Find<Canvas>("Canvas");
-      DataContext = new MainWindowViewModel();
     }
 
     //private void ButtonOnClick(object sender, RoutedEventArgs e)

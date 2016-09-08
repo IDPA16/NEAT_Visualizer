@@ -22,37 +22,22 @@ namespace NEAT_Visualizer
     static void Main(string[] args)
     {
       InitializeLogging();
-      new Bootstrapper().InitializeApplication();
+      var bootstrapper = new Bootstrapper();
+      var app = new App();
 
-      if (IsWindows() && !UseGtkOnWindows())
-      {
-        AppBuilder.Configure<App>()
-            .UseWin32()
-            .UseDirect2D1()
-            .Start<MainWindow>();
-      }
-      else
-      {
-        // on mac, unix, and if chosen on windows, use Gtk
-        AppBuilder.Configure<App>()
-            .UseGtk()
-            .UseCairo()
-            .Start<MainWindow>();
-      }
+
+      AppBuilder.Configure(app)
+      .UsePlatformDetect()
+      .SetupWithoutStarting();
+
+      bootstrapper.InitializeApplication();
+      app.Start(bootstrapper.StartupWindow);
     }
 
-    private static bool UseGtkOnWindows()
+    public void Start(Window startupWindow)
     {
-      // change this to true if gtk should be used
-      return false;
-    }
-
-    private static bool IsWindows()
-    {
-      return Environment.OSVersion.Platform == PlatformID.Win32Windows ||
-             Environment.OSVersion.Platform == PlatformID.Win32NT ||
-             Environment.OSVersion.Platform == PlatformID.Win32S ||
-             Environment.OSVersion.Platform == PlatformID.WinCE;
+      startupWindow.Show();
+      Run(startupWindow);
     }
 
     public static void AttachDevTools(Window window)

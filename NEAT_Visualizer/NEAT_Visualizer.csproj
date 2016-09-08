@@ -204,6 +204,7 @@
     <Compile Include="Model\NeuralNetwork.cs" />
     <Compile Include="Model\Neuron.cs" />
     <Compile Include="Model\Species.cs" />
+    <Compile Include="ViewModels\Dialogs\OpenFileDialogViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\Dialogs\DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
@@ -218,7 +219,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UserControls\" />
-    <Folder Include="ViewModels\Dialogs\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Dialogs\DialogWindow.xaml">

@@ -2,9 +2,9 @@
   <DockPanel LastChildFill="True" Name="Root">
     <Menu DockPanel.Dock="Top" Height="20">
       <MenuItem Header="File">
-        <MenuItem Header="Open from file" />
-        <MenuItem Header="Open from folder" />
-        <MenuItem Header="Close" />
+        <MenuItem Header="Open from file" Command="{Binding OpenFileCommand}" />
+        <MenuItem Header="Open from folder" Command="{Binding OpenFolderCommand}" />
+        <MenuItem Header="Close" Command="{Binding CloseCommand}" />
       </MenuItem>
     </Menu>
     <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">

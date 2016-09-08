@@ -1,8 +1,17 @@
-﻿<Window xmlns="https://github.com/avaloniaui" MinWidth="300" MinHeight="200" Title="{Binding Title}">
+﻿<Window xmlns="https://github.com/avaloniaui" xmlns:sys="clr-namespace:System;assembly=mscorlib" MinWidth="300" MinHeight="200" Title="{Binding Title}">
   <DockPanel Name="Root">
     <StackPanel Orientation="Horizontal" Name="ButtonBar" DockPanel.Dock="Bottom" Height="30">
-      <!-- buttons are dynamically added from code-behind -->
+      <!-- buttons for navigation are dynamically added from code-behind -->
     </StackPanel>
-    <ContentPresenter Content="{Binding Content}" DockPanel.Dock="Top" />
+    
+    <ContentPresenter Content="{Binding Content}" DockPanel.Dock="Top">
+      <ContentPresenter.DataTemplates>
+        <DataTemplates>
+          <DataTemplate DataType="sys:String">
+            <AccessText Text="{Binding}" FontSize="33" />
+          </DataTemplate>
+        </DataTemplates>
+      </ContentPresenter.DataTemplates>
+    </ContentPresenter>
   </DockPanel>
 </Window>

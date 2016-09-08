@@ -14,8 +14,8 @@ namespace NEAT_Visualizer.Interaction.UserInteractions
 
     public UserInteractionRequestedEventArgs(IUserInteraction context, Action callback)
     {
-      this.Context = context;
-      this.Callback = callback;
+      Context = context;
+      Callback = callback;
     }
 
   }

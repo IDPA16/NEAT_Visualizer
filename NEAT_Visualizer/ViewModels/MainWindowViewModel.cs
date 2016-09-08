@@ -11,13 +11,6 @@ namespace NEAT_Visualizer.ViewModels
   public class MainWindowViewModel : ViewModelBase
   {
     //private const char DELIMITER = '\t';
-    #region backing fields
-    private int selectedGeneration = 0;
-
-    private int selectedSpecies = 0;
-
-    //private int selectedNetwork = 0;
-    #endregion
     #region ctors and initializers
     public MainWindowViewModel()
     {
@@ -39,33 +32,20 @@ namespace NEAT_Visualizer.ViewModels
     public ICommand OpenFolderCommand { get; private set; }
     #endregion
     #region Properties
-    public int SelectedGeneration // { get; set; }
+    public int SelectedGeneration { get; set; }
+
+    // ReSharper disable once UnusedMember.Local
+    private void OnSelectedGenerationChanged()
     {
-      get { return selectedGeneration; }
-      set
-      {
-        if (value != selectedGeneration)
-        {
-          selectedGeneration = value;
-          SelectedSpecies = 0;
-          SelectedNetwork = 0;
-          OnPropertyChanged();
-        }
-      }
+      SelectedSpecies = 0;
+      SelectedNetwork = 0;
     }
 
-    public int SelectedSpecies // { get; set; }
+    public int SelectedSpecies { get; set; }
+    // ReSharper disable once UnusedMember.Local
+    private void OnSelectedSpeciesChanged()
     {
-      get { return selectedSpecies; }
-      set
-      {
-        if (value != selectedSpecies)
-        {
-          selectedSpecies = value;
-          SelectedNetwork = 0;
-          OnPropertyChanged();
-        }
-      }
+      SelectedNetwork = 0;
     }
 
     public int SelectedNetwork { get; set; }

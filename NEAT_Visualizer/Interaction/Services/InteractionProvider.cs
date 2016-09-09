@@ -33,7 +33,15 @@ namespace NEAT_Visualizer.Interaction.Services
       }
       else if (openFolderDialogViewModel != null)
       {
+        OpenFolderDialog dialog = new OpenFolderDialog();
 
+        string result = await dialog.ShowAsync();
+        dialog.Title = e.Context.Title;
+        e.Context.UserInteractionResult = !string.IsNullOrWhiteSpace(result)
+          ? UserInteractionOptions.Ok
+          : UserInteractionOptions.Cancel;
+
+        openFolderDialogViewModel.SelectedDirectory = new System.IO.DirectoryInfo(result ?? "");
       }
       else
       {

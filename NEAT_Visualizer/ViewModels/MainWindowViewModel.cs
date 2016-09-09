@@ -106,13 +106,34 @@ namespace NEAT_Visualizer.ViewModels
         business.Generations.Clear();
         business.Generations.Add(business.NetworkLoader.LoadGeneration((interaction.Content as OpenFileDialogViewModel).SelectedFile));
         OnPropertyChanged(null);
+        SelectedGeneration = 0;
       }
-
     }
 
     private void OnOpenFolder()
     {
+      var interaction = new UserInteraction()
+      {
+        Title = "Select generation file",
+        Content = new OpenFolderDialogViewModel()
+      };
 
+      OpenFileDialogInteractionRequest.Raise(interaction, OnOpenFolderCallback);
+    }
+
+    private void OnOpenFolderCallback(IUserInteraction interaction)
+    {
+      if (interaction.UserInteractionResult == UserInteractionOptions.Ok)
+      {
+        business.Generations.Clear();
+        foreach (var generation in business.NetworkLoader.LoadAllGenerations((interaction.Content as OpenFolderDialogViewModel).SelectedDirectory))
+        {
+          business.Generations.Add(generation);
+        }
+        
+        OnPropertyChanged(null);
+        SelectedGeneration = 0;
+      }
     }
 
     private void OnClose()

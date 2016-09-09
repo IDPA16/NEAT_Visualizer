@@ -8,9 +8,9 @@
       </MenuItem>
     </Menu>
     <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
-      <ListBox Items="{Binding Generations}" SelectedIndex="{Binding SelectedGeneration, Mode=TwoWay}" Width="100" BorderThickness="1" />
-      <ListBox Items="{Binding Species}" SelectedIndex="{Binding SelectedSpecies, Mode=TwoWay}" Width="100" BorderThickness="1" Margin="-1,0,0,0" />
-      <ListBox Items="{Binding Networks}" SelectedIndex="{Binding SelectedNetwork, Mode=TwoWay}" Width="100" BorderThickness="1" Margin="-1,0,0,0" />
+      <ListBox Items="{Binding Generations}" SelectedIndex="{Binding SelectedGeneration, Mode=TwoWay}" Width="100" BorderThickness="1" Name="GenerationsListBox" />
+      <ListBox Items="{Binding Species}" SelectedIndex="{Binding SelectedSpecies, Mode=TwoWay}" Width="100" BorderThickness="1" Margin="-1,0,0,0" Name="SpeciesListBox" />
+      <ListBox Items="{Binding Networks}" SelectedIndex="{Binding SelectedNetwork, Mode=TwoWay}" Width="100" BorderThickness="1" Margin="-1,0,0,0" Name="NetworksListBox" />
     </StackPanel>
     <Canvas DockPanel.Dock="Right" Name="Canvas" />
   </DockPanel>

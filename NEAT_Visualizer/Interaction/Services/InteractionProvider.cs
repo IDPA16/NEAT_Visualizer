@@ -1,4 +1,7 @@
-﻿using NEAT_Visualizer.Interaction.UserInteractions;
+﻿using System.Linq;
+using Avalonia.Controls;
+using NEAT_Visualizer.Interaction.UserInteractions;
+using NEAT_Visualizer.ViewModels.Dialogs;
 using NEAT_Visualizer.Views.Dialogs;
 
 namespace NEAT_Visualizer.Interaction.Services
@@ -11,9 +14,33 @@ namespace NEAT_Visualizer.Interaction.Services
       request.Raised += DisplayInteraction;
     }
 
-    private void DisplayInteraction(object sender, UserInteractionRequestedEventArgs e)
+    private async void DisplayInteraction(object sender, UserInteractionRequestedEventArgs e)
     {
-      new DialogWindow(e.Context).Show();
+      var openFileDialogViewModel = e.Context.Content as OpenFileDialogViewModel;
+      var openFolderDialogViewModel = e.Context.Content as OpenFolderDialogViewModel;
+
+      if (openFileDialogViewModel != null)
+      {
+        OpenFileDialog dialog = new OpenFileDialog();
+        dialog.AllowMultiple = false;
+        string[] result = await dialog.ShowAsync();
+        dialog.Title = e.Context.Title;
+        e.Context.UserInteractionResult = result.ToList().Count == 1
+          ? UserInteractionOptions.Ok
+          : UserInteractionOptions.Cancel;
+
+        openFileDialogViewModel.SelectedFile = new System.IO.FileInfo(result.SingleOrDefault() ?? "");
+      }
+      else if (openFolderDialogViewModel != null)
+      {
+
+      }
+      else
+      {
+        new DialogWindow(e.Context).Show();
+      }
+
+      e.Callback.Invoke();
     }
 
   }

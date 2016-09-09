@@ -19,6 +19,9 @@ namespace NEAT_Visualizer.Views
       InitializeComponent();
       App.AttachDevTools(this);
 
+      this.Find<ListBox>("GenerationsListBox").SelectedIndex = 0;
+      this.Find<ListBox>("SpeciesListBox").SelectedIndex = 0;
+      this.Find<ListBox>("NetworksListBox").SelectedIndex = 0;
       //var button = new Button();
       //button.Content = "Wew lad";
       //button.Width = 60;

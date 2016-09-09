@@ -17,8 +17,8 @@
             <AccessText Text="{Binding}" FontSize="33" />
           </DataTemplate>
           <!--<DataTemplate DataType="vm:OpenFileDialogViewModel">
-            <FileDialog Filters="{Binding FileFilterMask}">
-            </FileDialog>
+            <OpenFileDialog>
+            </OpenFileDialog>
           </DataTemplate>-->
         </DataTemplates>
       </ContentPresenter.DataTemplates>

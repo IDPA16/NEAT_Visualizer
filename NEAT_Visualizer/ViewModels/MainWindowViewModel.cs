@@ -1,21 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Avalonia;
 using NEAT_Visualizer.Business;
 using NEAT_Visualizer.Interaction.Commands;
 using NEAT_Visualizer.Interaction.UserInteractions;
+using NEAT_Visualizer.Model;
 using NEAT_Visualizer.ViewModels.Dialogs;
 using PropertyChanged;
 
 namespace NEAT_Visualizer.ViewModels
 {
   [ImplementPropertyChanged]
-  public class MainWindowViewModel
+  public class MainWindowViewModel : ViewModelBase
   {
+     private const char DELIMITER = '\t';
+
     private readonly IVisualizerBusiness business;
 
-    //private const char DELIMITER = '\t';
+    private IList<Generation> generations => business.Generations;
+    private IList<Species> species => SelectedGeneration >= 0 ?  generations[SelectedGeneration].Species : new List<Species>();
+    private IList<NeuralNetwork> networks => SelectedSpecies >= 0 ? species[SelectedSpecies].Networks : new List<NeuralNetwork>();
+    private NeuralNetwork currentNetwork => SelectedNetwork >= 0 ? networks[SelectedNetwork] : null;
+
     #region ctors and initializers
     public MainWindowViewModel(IVisualizerBusiness business)
     {
@@ -63,30 +72,42 @@ namespace NEAT_Visualizer.ViewModels
 
     public int SelectedNetwork { get; set; }
 
-    public ObservableCollection<string> Generations { get; set; } = new ObservableCollection<string>() { " 1\t32", " 2\t110", " 3\t110" };
+    public ObservableCollection<string> Generations
+      =>
+        new ObservableCollection<string>(
+          generations.Select(g => $" {g.GenerationsPassed}{DELIMITER}{g.Species[0].FitnessHighscore}"));
+    // ReSharper disable once UnusedMember.Local
 
-    public ObservableCollection<string> Species { get; set; } = new ObservableCollection<string>() { " 1\t110", " 2\t80" };
+    public ObservableCollection<string> Species
+      => new ObservableCollection<string>(
+        species.Select((s, i) => $" {i}{DELIMITER}{s.FitnessHighscore}"));
 
-    public ObservableCollection<string> Networks { get; set; } = new ObservableCollection<string>() { " 1\t80", " 2\t80" };
+    public ObservableCollection<string> Networks
+      => new ObservableCollection<string>(
+        networks.Select((n, i) => $" {i}{DELIMITER}{n.Fitness/**n.FitnessModifier*/}"));
     #endregion
 
     #region CommandHandlers
     private void OnOpenFile()
     {
-      var viewModel = new OpenFileDialogViewModel();
       var interaction = new UserInteraction()
       {
         Title = "Select generation file",
-        Content = viewModel,
-        UserInteractionOptions = UserInteractionOptions.Ok | UserInteractionOptions.Cancel
+        Content = new OpenFileDialogViewModel()
       };
 
-      OpenFileDialogInteractionRequest.Raise(interaction);
+      OpenFileDialogInteractionRequest.Raise(interaction, OnOpenFileCallback);
+    }
 
+    private void OnOpenFileCallback(IUserInteraction interaction)
+    {
       if (interaction.UserInteractionResult == UserInteractionOptions.Ok)
       {
-        business.NetworkLoader.LoadGeneration(viewModel.SelectedFile);
+        business.Generations.Clear();
+        business.Generations.Add(business.NetworkLoader.LoadGeneration((interaction.Content as OpenFileDialogViewModel).SelectedFile));
+        OnPropertyChanged(null);
       }
+
     }
 
     private void OnOpenFolder()

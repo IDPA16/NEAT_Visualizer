@@ -1,4 +1,6 @@
-﻿using NEAT_Visualizer.Business.DataLoaders;
+﻿using System.Collections.Generic;
+using NEAT_Visualizer.Business.DataLoaders;
+using NEAT_Visualizer.Model;
 
 namespace NEAT_Visualizer.Business
 {
@@ -10,5 +12,7 @@ namespace NEAT_Visualizer.Business
     }
 
     public IGenerationLoader NetworkLoader { get; }
+
+    public IList<Generation> Generations { get; } = new List<Generation>();
   }
 }

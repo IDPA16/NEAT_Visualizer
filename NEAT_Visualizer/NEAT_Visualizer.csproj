@@ -205,7 +205,9 @@
     <Compile Include="Model\Neuron.cs" />
     <Compile Include="Model\Species.cs" />
     <Compile Include="ViewModels\Dialogs\OpenFileDialogViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\OpenFolderDialogViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Dialogs\DialogWindow.xaml.cs">
       <DependentUpon>DialogWindow.xaml</DependentUpon>
     </Compile>

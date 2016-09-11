@@ -1,4 +1,5 @@
 ﻿using System;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
@@ -19,30 +20,16 @@ namespace NEAT_Visualizer.Views
       InitializeComponent();
       App.AttachDevTools(this);
 
-      this.Find<ListBox>("GenerationsListBox").SelectedIndex = 0;
-      this.Find<ListBox>("SpeciesListBox").SelectedIndex = 0;
-      this.Find<ListBox>("NetworksListBox").SelectedIndex = 0;
-      //var button = new Button();
-      //button.Content = "Wew lad";
-      //button.Width = 60;
-      //button.Height = 60;
-      //var rootPanel = this.Find<Panel>("Root");
-      //rootPanel.Children.Add(button);
-      //button.Click += ButtonOnClick;
-      //Canvas canvas = this.Find<Canvas>("Canvas");
+      var canvas = this.FindControl<Canvas>("Canvas");
+      canvas.PointerPressed += Canvas_PointerPressed;
     }
 
-    //private void ButtonOnClick(object sender, RoutedEventArgs e)
-    //{
-    //  (sender as Button).Content = "Wehew!";
-    //  MainWindowViewModel.ShowInfoInteractionRequest.Raise(new UserInteraction()
-    //  {
-    //    Title = "wuwuuw",
-    //    Content = "Some text that is important",
-    //    UserInteractionOptions = UserInteractionOptions.Ok
-    //  });
-
-    //}
+    private void Canvas_PointerPressed(object sender, Avalonia.Input.PointerPressedEventArgs e)
+    {
+      var canvas = sender as Canvas;
+      Point point = e.GetPosition(canvas);
+      InteractionRequest.Register().Raise(new UserInteraction() {Content = point.ToString() , Title = "Point clicked"});
+    }
 
     private void InitializeComponent()
     {

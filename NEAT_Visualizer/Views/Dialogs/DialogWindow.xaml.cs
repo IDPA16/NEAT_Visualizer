@@ -29,19 +29,25 @@ namespace NEAT_Visualizer.Views.Dialogs
 
     private void AddButtons(UserInteractionOptions options)
     {
+      const int buttonWidth = 100;
       var buttonBar = root.FindControl<IPanel>("ButtonBar");
 
       // create all the buttons
       foreach (var option in GetFlags(options))
       {
-        var button = new Button { Content = Enum.GetName(typeof(UserInteractionOptions), option) };
+        var button = new Button { Content = Enum.GetName(typeof(UserInteractionOptions), option), Width = buttonWidth };
         buttonBar.Children.Add(button);
         button.Click += (sender, e) =>
         {
-          interaction.UserInteractionResult = (UserInteractionOptions) option;
+          interaction.UserInteractionResult = (UserInteractionOptions)option;
           Close();
         };
       }
+
+      int buttonCount = buttonBar.Children.Count;
+      // this has to be changed if the ButtonBar isnt a StackPanel anymore!
+      var bar = buttonBar as StackPanel;
+      bar.Width = buttonWidth * buttonCount;
     }
 
     private void InitializeComponent()

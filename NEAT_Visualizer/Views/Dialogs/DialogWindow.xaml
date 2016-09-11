@@ -3,12 +3,18 @@
         xmlns:vm="clr-namespace:NEAT_Visualizer.ViewModels.Dialogs;assembly=NEAT_Visualizer"
         MinWidth="300"
         MinHeight="200"
-        Title="{Binding Title}">
+        Title="{Binding Title}"
+        MaxHeight="200"
+        MaxWidth="200">
 
   <DockPanel Name="Root">
-    <StackPanel Orientation="Horizontal" Name="ButtonBar" DockPanel.Dock="Bottom" Height="30">
-      <!-- buttons for navigation are dynamically added from code-behind -->
-    </StackPanel>
+    <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
+      <StackPanel Orientation="Horizontal" Name="ButtonBar" DockPanel.Dock="Right" Height="30">
+        <!-- buttons for navigation are dynamically added from code-behind -->
+      </StackPanel>      
+      <Panel DockPanel.Dock="Left"><!--a empty stub to make last child fill--></Panel>
+    </DockPanel>
+
 
     <ContentPresenter Content="{Binding Content}" DockPanel.Dock="Top">
       <ContentPresenter.DataTemplates>

@@ -28,7 +28,7 @@ namespace NEAT_Visualizer.Views
     {
       var canvas = sender as Canvas;
       Point point = e.GetPosition(canvas);
-      InteractionRequest.Register().Raise(new UserInteraction() {Content = point.ToString() , Title = "Point clicked"});
+      InteractionRequest.Register().Raise(new UserInteraction() {Content = point.ToString() , Title = "Point clicked", UserInteractionOptions = UserInteractionOptions.Ok});
     }
 
     private void InitializeComponent()

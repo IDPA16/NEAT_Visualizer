@@ -1,4 +1,4 @@
-﻿<Window xmlns="https://github.com/avaloniaui" MinWidth="500" MinHeight="300">
+﻿<Window xmlns="https://github.com/avaloniaui" xmlns:controls="clr-namespace:NEAT_Visualizer.UserControls;assembly=NEAT_Visualizer" MinWidth="500" MinHeight="300">
   <DockPanel LastChildFill="True" Name="Root">
     <Menu DockPanel.Dock="Top" Height="20">
       <MenuItem Header="File">
@@ -12,7 +12,11 @@
       <ListBox Items="{Binding Species}" SelectedIndex="{Binding SelectedSpecies, Mode=TwoWay}" Width="100" BorderThickness="1" Margin="-1,0,0,0" Name="SpeciesListBox" />
       <ListBox Items="{Binding Networks}" SelectedIndex="{Binding SelectedNetwork, Mode=TwoWay}" Width="100" BorderThickness="1" Margin="-1,0,0,0" Name="NetworksListBox" />
     </StackPanel>
-    <Canvas DockPanel.Dock="Right" Name="Canvas">
-    </Canvas>
-  </DockPanel>
+    <!--<Canvas DockPanel.Dock="Right" Name="Canvas">
+    </Canvas>-->
+    <controls:NeuralNetworkVisualizer DockPanel.Dock="Right" Name="Canvas">
+      
+    </controls:NeuralNetworkVisualizer>
+  
+</DockPanel>
 </Window>

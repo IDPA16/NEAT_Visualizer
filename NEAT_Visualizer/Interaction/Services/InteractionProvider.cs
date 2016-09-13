@@ -16,39 +16,39 @@ namespace NEAT_Visualizer.Interaction.Services
 
     private async void DisplayInteraction(object sender, UserInteractionRequestedEventArgs e)
     {
-      var openFileDialogViewModel = e.Context.Content as OpenFileDialogViewModel;
-      var openFolderDialogViewModel = e.Context.Content as OpenFolderDialogViewModel;
+      //var openFileDialogViewModel = e.Context.Content as OpenFileDialogViewModel;
+      //var openFolderDialogViewModel = e.Context.Content as OpenFolderDialogViewModel;
 
-      if (openFileDialogViewModel != null)
-      {
-        OpenFileDialog dialog = new OpenFileDialog();
-        dialog.AllowMultiple = false;
-        string[] result = await dialog.ShowAsync();
-        dialog.Title = e.Context.Title;
-        e.Context.UserInteractionResult = result.ToList().Count == 1
-          ? UserInteractionOptions.Ok
-          : UserInteractionOptions.Cancel;
+      //if (openFileDialogViewModel != null)
+      //{
+      //  OpenFileDialog dialog = new OpenFileDialog();
+      //  dialog.AllowMultiple = false;
+      //  string[] result = await dialog.ShowAsync();
+      //  dialog.Title = e.Context.Title;
+      //  e.Context.UserInteractionResult = result.ToList().Count == 1
+      //    ? UserInteractionOptions.Ok
+      //    : UserInteractionOptions.Cancel;
 
-        openFileDialogViewModel.SelectedFile = new System.IO.FileInfo(result.SingleOrDefault() ?? "");
-      }
-      else if (openFolderDialogViewModel != null)
-      {
-        OpenFolderDialog dialog = new OpenFolderDialog();
+      //  openFileDialogViewModel.SelectedFile = new System.IO.FileInfo(result.SingleOrDefault() ?? "");
+      //}
+      //else if (openFolderDialogViewModel != null)
+      //{
+      //  OpenFolderDialog dialog = new OpenFolderDialog();
 
-        string result = await dialog.ShowAsync();
-        dialog.Title = e.Context.Title;
-        e.Context.UserInteractionResult = !string.IsNullOrWhiteSpace(result)
-          ? UserInteractionOptions.Ok
-          : UserInteractionOptions.Cancel;
+      //  string result = await dialog.ShowAsync();
+      //  dialog.Title = e.Context.Title;
+      //  e.Context.UserInteractionResult = !string.IsNullOrWhiteSpace(result)
+      //    ? UserInteractionOptions.Ok
+      //    : UserInteractionOptions.Cancel;
 
-        openFolderDialogViewModel.SelectedDirectory = new System.IO.DirectoryInfo(result ?? "");
-      }
-      else
-      {
-        new DialogWindow(e.Context).Show();
-      }
+      //  openFolderDialogViewModel.SelectedDirectory = new System.IO.DirectoryInfo(result ?? "");
+      //}
+      //else
+      //{
+      new DialogWindow(e.Context).Show();
+      //}
 
-      e.Callback.Invoke();
+      //e.Callback.Invoke();
     }
 
   }

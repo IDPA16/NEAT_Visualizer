@@ -187,7 +187,6 @@
     <Compile Include="Business\DataLoaders\IGenerationLoader.cs" />
     <Compile Include="Business\DataLoaders\GenerationLoader.cs" />
     <Compile Include="Business\DataLoaders\JsonRepresentation.cs" />
-    <Compile Include="Business\DataLoaders\JsonRepresentative.cs" />
     <Compile Include="Business\DataLoaders\JsonToModelMapper.cs" />
     <Compile Include="Business\IVisualizerBusiness.cs" />
     <Compile Include="Business\VisualizerBusiness.cs" />

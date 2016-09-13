@@ -1,11 +1,9 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using NEAT_Visualizer.Model;
-using PropertyChanged;
 
 namespace NEAT_Visualizer.UserControls
 {
-  [DoNotNotify]
   public class NeuralNetworkVisualizer : Canvas, INeuralNetworkVisualizer
   {
     private NeuralNetwork currentNetwork;

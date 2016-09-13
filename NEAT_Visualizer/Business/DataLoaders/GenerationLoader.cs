@@ -12,7 +12,7 @@ namespace NEAT_Visualizer.Business.DataLoaders
     public Generation LoadGeneration(FileInfo fileName)
     {
       string json = File.ReadAllText(fileName.FullName);
-      var jsonRepresentation = JsonConvert.DeserializeObject<JsonRepresentation.Rootobject>(json);
+      var jsonRepresentation = JsonConvert.DeserializeObject<JsonRepresentative.Rootobject>(json);
       
       return jsonRepresentation.ToModel();
     }

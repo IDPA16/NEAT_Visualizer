@@ -25,9 +25,9 @@ namespace NEAT_Visualizer
       var bootstrapper = new Bootstrapper();
       var app = new App();
 
+
       AppBuilder.Configure(app)
-      //.UsePlatformDetect()
-      .UseGtk().UseCairo()
+      .UsePlatformDetect()
       .SetupWithoutStarting();
 
       bootstrapper.InitializeApplication();

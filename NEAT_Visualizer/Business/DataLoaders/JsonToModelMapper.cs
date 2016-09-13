@@ -6,7 +6,7 @@ namespace NEAT_Visualizer.Business.DataLoaders
 {
   public static class JsonToModelMapper
   {
-    public static Generation ToModel(this JsonRepresentation.Rootobject jsonRoot)
+    public static Generation ToModel(this JsonRepresentative.Rootobject jsonRoot)
     {
       var generation = new Generation
       {
@@ -22,7 +22,7 @@ namespace NEAT_Visualizer.Business.DataLoaders
       return generation;
     }
 
-    private static Species ToModel(this JsonRepresentation.Species speciesRepresentation)
+    private static Species ToModel(this JsonRepresentative.Species speciesRepresentation)
     {
       var species = new Species();
 
@@ -34,7 +34,7 @@ namespace NEAT_Visualizer.Business.DataLoaders
       return species;
     }
 
-    private static NeuralNetwork CreateNetworkFromData(this JsonRepresentation.Population organism)
+    private static NeuralNetwork CreateNetworkFromData(this JsonRepresentative.Population organism)
     {
       var network = new NeuralNetwork
       {

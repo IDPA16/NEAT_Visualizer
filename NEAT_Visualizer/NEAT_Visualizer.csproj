@@ -204,6 +204,7 @@
     <Compile Include="Model\NeuralNetwork.cs" />
     <Compile Include="Model\Neuron.cs" />
     <Compile Include="Model\Species.cs" />
+    <Compile Include="UserControls\NetworkStructuresCanvasDrawer.cs" />
     <Compile Include="UserControls\INeuralNetworkVisualizer.cs" />
     <Compile Include="UserControls\NeuralNetworkVisualizer.xaml.cs">
       <DependentUpon>NeuralNetworkVisualizer.xaml</DependentUpon>

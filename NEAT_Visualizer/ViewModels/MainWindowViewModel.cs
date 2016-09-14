@@ -23,7 +23,7 @@ namespace NEAT_Visualizer.ViewModels
     private IList<Generation> generations => business.Generations;
     private IList<Species> species => SelectedGeneration >= 0 ?  generations[SelectedGeneration].Species : new List<Species>();
     private IList<NeuralNetwork> networks => SelectedSpecies >= 0 ? species[SelectedSpecies].Networks : new List<NeuralNetwork>();
-    private NeuralNetwork currentNetwork => SelectedNetwork >= 0 ? networks[SelectedNetwork] : null;
+    public NeuralNetwork CurrentNetwork => SelectedNetwork >= 0 ? networks[SelectedNetwork] : null;
 
     #region ctors and initializers
     public MainWindowViewModel(IVisualizerBusiness business)

@@ -1,5 +1,4 @@
 ﻿// ReSharper disable InconsistentNaming
-
 using System.ComponentModel;
 
 namespace NEAT_Visualizer.Business.DataLoaders

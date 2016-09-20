@@ -1,4 +1,6 @@
-﻿using Avalonia.Controls;
+﻿using System.Linq;
+using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using NEAT_Visualizer.Model;
 using PropertyChanged;
@@ -23,6 +25,7 @@ namespace NEAT_Visualizer.UserControls
     public void DisplayNetwork(NeuralNetwork network)
     {
       currentNetwork = network;
+      this.DrawNeuron(network.Neurons.First(), new Point(50, 50), 20);
     }
   }
 }

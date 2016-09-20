@@ -21,6 +21,7 @@ namespace NEAT_Visualizer.ViewModels
     private readonly IVisualizerBusiness business;
 
     private IList<Generation> generations => business.Generations;
+
     private IList<Species> species => 
       SelectedGeneration >= 0
       ? generations[SelectedGeneration >= generations.Count ? 0 : SelectedGeneration].Species 

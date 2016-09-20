@@ -8,7 +8,8 @@ namespace NEAT_Visualizer.Business.DataLoaders
   [Browsable(false)]
   [EditorBrowsable(EditorBrowsableState.Never)]
   public class JsonRepresentation
-  { 
+  {
+
     public class Rootobject
     {
       public int populationSize { get; set; }
@@ -34,16 +35,62 @@ namespace NEAT_Visualizer.Business.DataLoaders
     public class Network
     {
       public Neuron[] neurons { get; set; }
-      public Genome[] genome { get; set; }
-    }
-
-    public class Neuron
-    {
-      public int layer { get; set; }
-      public float lastActionPotential { get; set; }
+      public Genome genome { get; set; }
     }
 
     public class Genome
+    {
+      public Parameters parameters { get; set; }
+      public int inputCount { get; set; }
+      public int outputCount { get; set; }
+      public Gene[] genes { get; set; }
+    }
+
+    public class Parameters
+    {
+      public Ranges ranges { get; set; }
+      public Mutation mutation { get; set; }
+      public Speciation speciation { get; set; }
+      public Reproduction reproduction { get; set; }
+      public Structure structure { get; set; }
+    }
+
+    public class Ranges
+    {
+      public float minWeight { get; set; }
+      public float maxWeight { get; set; }
+    }
+
+    public class Mutation
+    {
+      public float chanceForWeightMutation { get; set; }
+      public float chanceForConnectionalMutation { get; set; }
+      public float chanceForNeuralMutation { get; set; }
+      public float chanceOfTotalWeightReset { get; set; }
+    }
+
+    public class Speciation
+    {
+      public float importanceOfDisjointGenes { get; set; }
+      public float importanceOfAverageWeightDifference { get; set; }
+      public float compatibilityThreshold { get; set; }
+      public int stagnantSpeciesClearThreshold { get; set; }
+      public bool normalizeForLargerGenome { get; set; }
+    }
+
+    public class Reproduction
+    {
+      public float chanceForInterspecialReproduction { get; set; }
+      public int minSpeciesSizeForChampConservation { get; set; }
+    }
+
+    public class Structure
+    {
+      public int numberOfBiasNeurons { get; set; }
+      public bool minSpeciesSizeForChampConservation { get; set; }
+    }
+
+    public class Gene
     {
       public int historicalMarking { get; set; }
       public int from { get; set; }
@@ -51,6 +98,12 @@ namespace NEAT_Visualizer.Business.DataLoaders
       public float weight { get; set; }
       public bool isEnabled { get; set; }
       public bool isRecursive { get; set; }
+    }
+
+    public class Neuron
+    {
+      public int layer { get; set; }
+      public float lastActionPotential { get; set; }
     }
 
     public class Population
@@ -63,16 +116,62 @@ namespace NEAT_Visualizer.Business.DataLoaders
     public class Network1
     {
       public Neuron1[] neurons { get; set; }
-      public Genome1[] genome { get; set; }
-    }
-
-    public class Neuron1
-    {
-      public int layer { get; set; }
-      public float lastActionPotential { get; set; }
+      public Genome1 genome { get; set; }
     }
 
     public class Genome1
+    {
+      public Parameters1 parameters { get; set; }
+      public int inputCount { get; set; }
+      public int outputCount { get; set; }
+      public Gene1[] genes { get; set; }
+    }
+
+    public class Parameters1
+    {
+      public Ranges1 ranges { get; set; }
+      public Mutation1 mutation { get; set; }
+      public Speciation1 speciation { get; set; }
+      public Reproduction1 reproduction { get; set; }
+      public Structure1 structure { get; set; }
+    }
+
+    public class Ranges1
+    {
+      public float minWeight { get; set; }
+      public float maxWeight { get; set; }
+    }
+
+    public class Mutation1
+    {
+      public float chanceForWeightMutation { get; set; }
+      public float chanceForConnectionalMutation { get; set; }
+      public float chanceForNeuralMutation { get; set; }
+      public float chanceOfTotalWeightReset { get; set; }
+    }
+
+    public class Speciation1
+    {
+      public float importanceOfDisjointGenes { get; set; }
+      public float importanceOfAverageWeightDifference { get; set; }
+      public float compatibilityThreshold { get; set; }
+      public int stagnantSpeciesClearThreshold { get; set; }
+      public bool normalizeForLargerGenome { get; set; }
+    }
+
+    public class Reproduction1
+    {
+      public float chanceForInterspecialReproduction { get; set; }
+      public int minSpeciesSizeForChampConservation { get; set; }
+    }
+
+    public class Structure1
+    {
+      public int numberOfBiasNeurons { get; set; }
+      public bool minSpeciesSizeForChampConservation { get; set; }
+    }
+
+    public class Gene1
     {
       public int historicalMarking { get; set; }
       public int from { get; set; }
@@ -80,6 +179,12 @@ namespace NEAT_Visualizer.Business.DataLoaders
       public float weight { get; set; }
       public bool isEnabled { get; set; }
       public bool isRecursive { get; set; }
+    }
+
+    public class Neuron1
+    {
+      public int layer { get; set; }
+      public float lastActionPotential { get; set; }
     }
   }
 }

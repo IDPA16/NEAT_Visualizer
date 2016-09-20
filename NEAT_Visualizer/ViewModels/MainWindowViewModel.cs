@@ -16,14 +16,23 @@ namespace NEAT_Visualizer.ViewModels
   [ImplementPropertyChanged]
   public class MainWindowViewModel : ViewModelBase
   {
-     private const char DELIMITER = '\t';
+    private const char DELIMITER = '\t';
 
     private readonly IVisualizerBusiness business;
 
     private IList<Generation> generations => business.Generations;
-    private IList<Species> species => SelectedGeneration >= 0 ?  generations[SelectedGeneration].Species : new List<Species>();
-    private IList<NeuralNetwork> networks => SelectedSpecies >= 0 ? species[SelectedSpecies].Networks : new List<NeuralNetwork>();
-    private NeuralNetwork currentNetwork => SelectedNetwork >= 0 ? networks[SelectedNetwork] : null;
+    private IList<Species> species => 
+      SelectedGeneration >= 0
+      ? generations[SelectedGeneration >= generations.Count ? 0 : SelectedGeneration].Species 
+      : new List<Species>();
+    private IList<NeuralNetwork> networks => 
+      SelectedSpecies >= 0 
+        ? species[SelectedSpecies >= species.Count ? 0 
+        : SelectedSpecies].Networks : new List<NeuralNetwork>();
+    private NeuralNetwork currentNetwork => 
+      SelectedNetwork >= 0 
+        ? networks[SelectedNetwork >= networks.Count ? 0 
+        : SelectedNetwork] : null;
 
     #region ctors and initializers
     public MainWindowViewModel(IVisualizerBusiness business)
@@ -75,8 +84,7 @@ namespace NEAT_Visualizer.ViewModels
     public ObservableCollection<string> Generations
       =>
         new ObservableCollection<string>(
-          generations.Select(g => $" {g.GenerationsPassed}{DELIMITER}{g.Species[0].FitnessHighscore}"));
-    // ReSharper disable once UnusedMember.Local
+          generations.OrderBy(g => g.GenerationsPassed).Select(g => $" {g.GenerationsPassed}{DELIMITER}{g.FitnessHighscore}"));
 
     public ObservableCollection<string> Species
       => new ObservableCollection<string>(
@@ -130,7 +138,7 @@ namespace NEAT_Visualizer.ViewModels
         {
           business.Generations.Add(generation);
         }
-        
+
         OnPropertyChanged(null);
         SelectedGeneration = 0;
       }

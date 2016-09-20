@@ -45,7 +45,7 @@ namespace NEAT_Visualizer.Business.DataLoaders
       var neurons = organism.network.neurons.Select(n => new Neuron() {Layer = n.layer}).ToList();
 
       // creates the connections from the genomes
-      foreach (var genome in organism.network.genome)
+      foreach (var genome in organism.network.genome.genes)
       {
         if (genome.isEnabled)
         {

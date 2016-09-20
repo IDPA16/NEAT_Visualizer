@@ -17,6 +17,9 @@ namespace NEAT_Visualizer
 
     private IVisualizerBusiness business;
 
+    /// <summary>
+    /// warning: this will be null before <see cref="InitializeApplication"/> is called.
+    /// </summary>
     public Window StartupWindow { get; private set; }
 
     /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace NEAT_Visualizer.Model
 {
@@ -18,5 +19,7 @@ namespace NEAT_Visualizer.Model
     public int GenerationsPassed { get; set; }
 
     public IList<Species> Species { get; set; }
+
+    public float FitnessHighscore => Species.Select(n => n.FitnessHighscore).Max();
   }
 }

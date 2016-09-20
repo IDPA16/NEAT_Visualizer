@@ -75,8 +75,7 @@ namespace NEAT_Visualizer.ViewModels
     public ObservableCollection<string> Generations
       =>
         new ObservableCollection<string>(
-          generations.Select(g => $" {g.GenerationsPassed}{DELIMITER}{g.Species[0].FitnessHighscore}"));
-    // ReSharper disable once UnusedMember.Local
+          generations.OrderBy(g => g.GenerationsPassed).Select(g => $" {g.GenerationsPassed}{DELIMITER}{g.FitnessHighscore}"));
 
     public ObservableCollection<string> Species
       => new ObservableCollection<string>(

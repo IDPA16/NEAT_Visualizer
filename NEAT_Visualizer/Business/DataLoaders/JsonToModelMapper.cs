@@ -11,13 +11,15 @@ namespace NEAT_Visualizer.Business.DataLoaders
       var generation = new Generation
       {
         GenerationsPassed = jsonRoot.generationsPassed,
-        PopulationSize = jsonRoot.populationSize
+        PopulationSize = jsonRoot.populationSize,
       };
 
       foreach (var species in jsonRoot.species)
       {
         generation.Species.Add(species.ToModel());
       }
+
+      generation.FitnessHighscore = generation.Species.Select(n => n.FitnessHighscore).Max();
 
       return generation;
     }
@@ -42,7 +44,7 @@ namespace NEAT_Visualizer.Business.DataLoaders
         FitnessModifier = organism.fitnessModifier
       };
 
-      var neurons = organism.network.neurons.Select(n => new Neuron() {Layer = n.layer}).ToList();
+      var neurons = organism.network.neurons.Select(n => new Neuron() { Layer = n.layer }).ToList();
 
       // creates the connections from the genomes
       foreach (var genome in organism.network.genome.genes)

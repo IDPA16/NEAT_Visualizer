@@ -188,6 +188,10 @@
     <Compile Include="Business\DataLoaders\GenerationLoader.cs" />
     <Compile Include="Business\DataLoaders\JsonRepresentation.cs" />
     <Compile Include="Business\DataLoaders\JsonToModelMapper.cs" />
+    <Compile Include="Business\GenerationProvider\GenerationInformation.cs" />
+    <Compile Include="Business\GenerationProvider\GenerationProvider.cs" />
+    <Compile Include="Business\GenerationProvider\IGenerationProvider.cs" />
+    <Compile Include="Business\GenerationProvider\LazyGenerationProvider.cs" />
     <Compile Include="Business\IVisualizerBusiness.cs" />
     <Compile Include="Business\VisualizerBusiness.cs" />
     <Compile Include="Interaction\Commands\DelegateCommand.cs" />
@@ -224,9 +228,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Business\GenerationProvider\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Views\Dialogs\DialogWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

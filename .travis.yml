@@ -1,7 +1,0 @@
-language: csharp
-solution: NEAT_Visualizer.sln
-addons:
-  apt:
-    packages:
-      - gtk-sharp2
-

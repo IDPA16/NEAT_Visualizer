@@ -371,3 +371,5 @@ paket-files/
 .idea/
 *.sln.iml
 
+# Resharper settings file
+*.sln.DotSettings

@@ -1,0 +1,33 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:vm="clr-namespace:NEAT_Visualizer.ViewModels.Dialogs;assembly=NEAT_Visualizer"
+        MinWidth="300"
+        MinHeight="200"
+        Title="{Binding Title}"
+        MaxHeight="200"
+        MaxWidth="200">
+
+  <DockPanel Name="Root">
+    <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
+      <StackPanel Orientation="Horizontal" Name="ButtonBar" DockPanel.Dock="Right" Height="30">
+        <!-- buttons for navigation are dynamically added from code-behind -->
+      </StackPanel>      
+      <Panel DockPanel.Dock="Left"><!--a empty stub to make last child fill--></Panel>
+    </DockPanel>
+
+
+    <ContentPresenter Content="{Binding Content}" DockPanel.Dock="Top">
+      <ContentPresenter.DataTemplates>
+        <DataTemplates>
+          <DataTemplate DataType="sys:String">
+            <AccessText Text="{Binding}" FontSize="33" />
+          </DataTemplate>
+          <!--<DataTemplate DataType="vm:OpenFileDialogViewModel">
+            <OpenFileDialog>
+            </OpenFileDialog>
+          </DataTemplate>-->
+        </DataTemplates>
+      </ContentPresenter.DataTemplates>
+    </ContentPresenter>
+  </DockPanel>
+</Window>

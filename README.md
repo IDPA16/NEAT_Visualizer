@@ -6,4 +6,4 @@ Development|[![Build Status](https://travis-ci.org/IDPA-2016-NEAT-CNN/NEAT_Visua
 
 A visualizer for NEAT that can load JSON data to display the topology of a NEATly designed network.
 
-[NEAT implementation known as Hippocrates (formerly JNF_NEAT](https://github.com/SirRade/Hippocrates)
+[NEAT implementation known as Hippocrates (formerly JNF_NEAT)](https://github.com/SirRade/Hippocrates)

@@ -6,7 +6,6 @@ using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using NEAT_Visualizer.Interaction.Services;
 using NEAT_Visualizer.Interaction.UserInteractions;
-using NEAT_Visualizer.UserControls;
 using NEAT_Visualizer.ViewModels;
 using PropertyChanged;
 

@@ -14,7 +14,7 @@ namespace NEAT_Visualizer.Business.GenerationProvider
       throw new NotImplementedException();
     }
 
-    public IList<GenerationInformation> GetGenerations()
+    public IList<GenerationMetadata> GetGenerations()
     {
       throw new NotImplementedException();
     }

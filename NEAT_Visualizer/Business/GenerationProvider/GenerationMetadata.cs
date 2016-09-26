@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace NEAT_Visualizer.Business.GenerationProvider
 {
-  public struct GenerationInformation
+  public struct GenerationMetadata
   {
-    public GenerationInformation(int generationNumber, int highestFitness)
+    public GenerationMetadata(int generationNumber, int highestFitness)
     {
       GenerationNumber = generationNumber;
       HighestFitness = highestFitness;

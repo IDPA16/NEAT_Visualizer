@@ -5,7 +5,7 @@ namespace NEAT_Visualizer.Business.GenerationProvider
 {
   public interface IGenerationProvider
   {
-    IList<GenerationInformation> GetGenerations();
+    IList<GenerationMetadata> GetGenerations();
 
     Generation GetGeneration(int index);
   }

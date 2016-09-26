@@ -188,7 +188,7 @@
     <Compile Include="Business\DataLoaders\GenerationLoader.cs" />
     <Compile Include="Business\DataLoaders\JsonRepresentation.cs" />
     <Compile Include="Business\DataLoaders\JsonToModelMapper.cs" />
-    <Compile Include="Business\GenerationProvider\GenerationInformation.cs" />
+    <Compile Include="Business\GenerationProvider\GenerationMetadata.cs" />
     <Compile Include="Business\GenerationProvider\GenerationProvider.cs" />
     <Compile Include="Business\GenerationProvider\IGenerationProvider.cs" />
     <Compile Include="Business\GenerationProvider\LazyGenerationProvider.cs" />

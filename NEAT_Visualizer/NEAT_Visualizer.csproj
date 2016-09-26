@@ -204,11 +204,6 @@
     <Compile Include="Model\NeuralNetwork.cs" />
     <Compile Include="Model\Neuron.cs" />
     <Compile Include="Model\Species.cs" />
-    <Compile Include="UserControls\NetworkStructuresCanvasDrawer.cs" />
-    <Compile Include="UserControls\INeuralNetworkVisualizer.cs" />
-    <Compile Include="UserControls\NeuralNetworkVisualizer.xaml.cs">
-      <DependentUpon>NeuralNetworkVisualizer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\Dialogs\OpenFileDialogViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\OpenFolderDialogViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -232,11 +227,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="UserControls\NeuralNetworkVisualizer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" />

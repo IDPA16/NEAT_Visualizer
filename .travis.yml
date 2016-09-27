@@ -9,5 +9,5 @@ install:
   - nuget install xunit.runners -Version 2.0.0 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release NEAT_Visualizer.sln
-  - mono ./testrunner/xunit.runner.console.*/tools/xunit.console.exe NEAT_Visualizer.BusinessTest/bin/Release/NEAT_Visualizer.BusinessTest.dll
+  - mono ./testrunner/xunit.runner.console.*/tools/xunit.console.x86.exe NEAT_Visualizer.BusinessTest/bin/Release/NEAT_Visualizer.BusinessTest.dll
 

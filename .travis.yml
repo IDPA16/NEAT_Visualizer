@@ -5,7 +5,7 @@ addons:
     packages:
       - gtk-sharp2
 install:
-  - nuget restore solution-name.sln
+  - nuget restore NEAT_Visualizer.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release NEAT_Visualizer.sln

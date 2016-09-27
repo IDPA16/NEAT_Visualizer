@@ -4,4 +4,10 @@ addons:
   apt:
     packages:
       - gtk-sharp2
+install:
+  - nuget restore solution-name.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release NEAT_Visualizer.sln
+  - mono ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./NEAT_Visualizer.BusinessTest/bin/Release/NEAT_Visualizer.BusinessTest.dll
 

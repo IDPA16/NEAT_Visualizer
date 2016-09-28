@@ -6,8 +6,8 @@ addons:
       - gtk-sharp2
 install:
   - nuget restore NEAT_Visualizer.sln
-  - nuget install xunit.runners -Version 2.0.0 -OutputDirectory testrunner
+  - nuget install xunit.runner.console -Version 2.1.0 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release NEAT_Visualizer.sln
-  - mono ./testrunner/xunit.runner.console.*/tools/xunit.console.x86.exe NEAT_Visualizer.BusinessTest/bin/Release/NEAT_Visualizer.BusinessTest.dll
+  - mono ./testrunner/xunit.runner.console.2.1.0/tools/xunit.console.exe NEAT_Visualizer.BusinessTest/bin/Release/NEAT_Visualizer.BusinessTest.dll
 

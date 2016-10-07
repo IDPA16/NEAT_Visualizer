@@ -1,5 +1,5 @@
-﻿<UserControl xmlns="https://github.com/avaloniaui">
-  <Canvas Name="Canvas">
+﻿<Canvas xmlns="https://github.com/avaloniaui">
+  <!--<Canvas Name="Canvas">
     
-  </Canvas>
-</UserControl>
+  </Canvas>-->
+</Canvas>

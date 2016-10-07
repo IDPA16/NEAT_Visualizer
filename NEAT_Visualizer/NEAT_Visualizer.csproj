@@ -204,6 +204,10 @@
     <Compile Include="Model\NeuralNetwork.cs" />
     <Compile Include="Model\Neuron.cs" />
     <Compile Include="Model\Species.cs" />
+    <Compile Include="UserControls\INetworkPresenter.cs" />
+    <Compile Include="UserControls\NetworkPresenter.xaml.cs">
+      <DependentUpon>NetworkPresenter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Dialogs\OpenFileDialogViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\OpenFolderDialogViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -219,9 +223,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Views\Dialogs\DialogWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -229,6 +231,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UserControls\NetworkPresenter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" />

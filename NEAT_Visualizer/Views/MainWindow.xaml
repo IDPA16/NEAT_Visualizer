@@ -13,7 +13,7 @@
       <ListBox Items="{Binding Networks}" SelectedIndex="{Binding SelectedNetwork, Mode=TwoWay}" Width="100" BorderThickness="1" Margin="-1,0,0,0" Name="NetworksListBox" />
     </StackPanel>
 
-    <Path DockPanel.Dock="Right" Width="200" Height="200" Name="SVGHost" Data="M10 10 H 90 V 90 H 10 Z" Stroke="black" Fill="black"></Path>
-  
-</DockPanel>
+    <controls:NetworkPresenter Name="NetworkPresenter" />
+    
+  </DockPanel>
 </Window>

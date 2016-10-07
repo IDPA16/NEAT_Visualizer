@@ -1,4 +1,6 @@
-﻿using Avalonia;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
@@ -15,7 +17,7 @@ namespace NEAT_Visualizer.UserControls
     public NetworkPresenter()
     {
       this.InitializeComponent();
-      AffectsRender(DisplayedNetworkProperty);
+      AffectsRender(NetworkProperty);
     }
 
     private void InitializeComponent()
@@ -23,22 +25,46 @@ namespace NEAT_Visualizer.UserControls
       AvaloniaXamlLoader.Load(this);
     }
 
-    public static readonly DirectProperty<NetworkPresenter, NeuralNetwork> DisplayedNetworkProperty =
+    public static readonly DirectProperty<NetworkPresenter, NeuralNetwork> NetworkProperty =
       AvaloniaProperty.RegisterDirect<NetworkPresenter, NeuralNetwork>(
-        nameof(DisplayedNetwork),
-        o => o.DisplayedNetwork,
-        (o, v) => o.DisplayedNetwork = v);
+        nameof(Network),
+        o => o.Network,
+        (o, v) => o.Network = v);
 
-    public NeuralNetwork DisplayedNetwork { get; set; }
+    public NeuralNetwork Network { get; set; }
 
     public override void Render(DrawingContext context)
     {
-      if (DisplayedNetwork != null || true)
-#warning REMOVE TRUE ON FINISH
-      {      
-        var geometry = GetNeuronCircle(100, 100);
+      if (Network != null) // no need to draw when no network is available.
+      {
+        List<Geometry> geometryToDraw = new List<Geometry>();
 
-        context.DrawGeometry(new SolidColorBrush(new Color(255, 102, 255, 102)), new Pen(0x000000), geometry);
+        int layerCount = Network.Neurons.Max(n => n.Layer) + 1; // smallest layer is 0
+        int height = (int)Height;
+        int widht = (int)Width;
+        const int margin = 50;
+        int xstep = (height - margin) / layerCount;
+
+        var layers = Network.Neurons.GroupBy(n => n.Layer).ToList();
+        for (int i = 0; i < layerCount; i++)
+        {
+          var neurons = layers[i];
+          int layer = neurons.First().Layer;
+          int neuronsInLayer = neurons.Count();
+          int ypos = xstep * i;
+
+          for (int j = 0; j < neuronsInLayer; j++)
+          {
+            //var neuron = neurons.ElementAt(j);
+            int xpos = ((widht - margin) / neuronsInLayer) * j;
+            geometryToDraw.Add(GetNeuronCircle(xpos, ypos));
+          }
+        }
+
+        foreach (var geometry in geometryToDraw)
+        {
+          context.DrawGeometry(new SolidColorBrush(new Color(255, 102, 255, 102)), new Pen(0x000000), geometry);
+        }
       }
 
 

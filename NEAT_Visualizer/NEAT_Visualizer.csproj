@@ -204,7 +204,6 @@
     <Compile Include="Model\NeuralNetwork.cs" />
     <Compile Include="Model\Neuron.cs" />
     <Compile Include="Model\Species.cs" />
-    <Compile Include="UserControls\INetworkPresenter.cs" />
     <Compile Include="UserControls\NetworkPresenter.xaml.cs">
       <DependentUpon>NetworkPresenter.xaml</DependentUpon>
     </Compile>

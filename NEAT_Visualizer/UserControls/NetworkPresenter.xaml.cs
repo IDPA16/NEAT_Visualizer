@@ -1,5 +1,4 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
@@ -9,12 +8,12 @@ using PropertyChanged;
 namespace NEAT_Visualizer.UserControls
 {
   [DoNotNotify]
-  public class NetworkPresenter : Canvas, INetworkPresenter
+  public class NetworkPresenter : Canvas
   {
     public NetworkPresenter()
     {
       this.InitializeComponent();
-      //DisplayNetwork(null);
+      AffectsRender(DisplayedNetworkProperty);
     }
 
     private void InitializeComponent()
@@ -22,21 +21,20 @@ namespace NEAT_Visualizer.UserControls
       AvaloniaXamlLoader.Load(this);
     }
 
-    public void DisplayNetwork(NeuralNetwork network)
+    public static readonly DirectProperty<NetworkPresenter, NeuralNetwork> DisplayedNetworkProperty =
+      AvaloniaProperty.RegisterDirect<NetworkPresenter, NeuralNetwork>(
+        nameof(DisplayedNetwork), 
+        o => o.DisplayedNetwork, 
+        (o, v) => o.DisplayedNetwork = v);
+
+    public NeuralNetwork DisplayedNetwork { get; set; }
+
+    public override void Render(DrawingContext context)
     {
-      var canvas = this;/*.FindControl<Canvas>("Canvas");*/
-      var sg = new StreamGeometry();
-      
+      var geometry = StreamGeometry.Parse("M10 10 H 90 V 90 H 10 Z");
 
-      using (var sgc = sg.Open())
-      {
-        sgc.BeginFigure(new Point(2, 2), true);
-        sgc.LineTo(new Point(20, 20));
-        sgc.ArcTo(new Point(50,50), new Size(20,20), 0, false, SweepDirection.Clockwise);
-        sgc.EndFigure(false);
-      }
-
-      canvas.Clip = sg;
+      context.DrawGeometry(new SolidColorBrush(new Color(255,25,0,0)), new Pen(123123),  geometry);
+      base.Render(context);
     }
   }
 }

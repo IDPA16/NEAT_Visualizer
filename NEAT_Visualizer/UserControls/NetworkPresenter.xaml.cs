@@ -39,28 +39,32 @@ namespace NEAT_Visualizer.UserControls
       {
         List<Geometry> geometryToDraw = new List<Geometry>();
 
+        // construct all neurons
         int layerCount = Network.Neurons.Max(n => n.Layer) + 1; // smallest layer is 0
-        int height = (int)Height;
-        int widht = (int)Width;
+
+        int height = (int)Bounds.Height;
+        int widht = (int)Bounds.Width;
         const int margin = 50;
-        int xstep = (height - margin) / layerCount;
+        int ystep = (height - margin) / (layerCount + 1);
 
         var layers = Network.Neurons.GroupBy(n => n.Layer).ToList();
         for (int i = 0; i < layerCount; i++)
         {
           var neurons = layers[i];
-          int layer = neurons.First().Layer;
+          //int layer = neurons.First().Layer;
           int neuronsInLayer = neurons.Count();
-          int ypos = xstep * i;
+          int ypos = ystep * (i + 1);
+          int xstep = (widht - margin) / (neuronsInLayer + 1);
 
           for (int j = 0; j < neuronsInLayer; j++)
           {
             //var neuron = neurons.ElementAt(j);
-            int xpos = ((widht - margin) / neuronsInLayer) * j;
+            int xpos = xstep * (j + 1);
             geometryToDraw.Add(GetNeuronCircle(xpos, ypos));
           }
         }
 
+        // draw all geometry objects
         foreach (var geometry in geometryToDraw)
         {
           context.DrawGeometry(new SolidColorBrush(new Color(255, 102, 255, 102)), new Pen(0x000000), geometry);

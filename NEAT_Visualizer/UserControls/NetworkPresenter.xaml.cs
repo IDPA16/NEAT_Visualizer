@@ -2,6 +2,7 @@
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Shapes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using NEAT_Visualizer.Model;
@@ -65,29 +66,38 @@ namespace NEAT_Visualizer.UserControls
           }
         }
 
-        var connectionsDrawingInformation = new Dictionary<Connection, Geometry>();
-        
+        var connectionsDrawingInformation = new Dictionary<Connection, LineData>();
+
         foreach (var neuronDrawingInformation in neuronsDrawingInformation)
         {
           // foreach incoming connection of the neuron
           foreach (var connection in neuronDrawingInformation.Key.IncomingConnections)
           {
-            Point startPoint = neuronsDrawingInformation[connection.Neuron];
+            Point leftTopOfStartNeuron = neuronsDrawingInformation[connection.Neuron];
+            Point startPoint = leftTopOfStartNeuron.WithX(leftTopOfStartNeuron.X + NEURON_CIRCLE_RADIUS).WithY(leftTopOfStartNeuron.Y + NEURON_CIRCLE_RADIUS);
             // the location of the neuron itself
-            Point endPoint = neuronDrawingInformation.Value;
-            connectionsDrawingInformation.Add(connection, new LineGeometry(startPoint, endPoint));
+            Point leftTopOfEndNeuron = neuronDrawingInformation.Value;
+            Point endPoint = leftTopOfEndNeuron.WithX(leftTopOfEndNeuron.X + NEURON_CIRCLE_RADIUS).WithY(leftTopOfEndNeuron.Y + NEURON_CIRCLE_RADIUS);
+
+            connectionsDrawingInformation.Add(connection, new LineData(startPoint, endPoint));
           }
+        }
+
+        uint black = ColorToUInt(new Color(255, 0, 0, 0));
+        var blackLinePen = new Pen(black, 4);
+        var blackOutlinePen = new Pen(black);
+        var neuronFillColor = new SolidColorBrush(new Color(255, 102, 255, 102));
+
+        // draw all lines (draw connections before neurons, so neurons overlap the connections)
+        foreach (LineData line in connectionsDrawingInformation.Values)
+        {
+          context.DrawLine(blackLinePen, line.Start, line.End);
         }
 
         // draw all neurons
         foreach (Point neuronCenters in neuronsDrawingInformation.Values)
         {
-          context.DrawGeometry(new SolidColorBrush(new Color(255, 102, 255, 102)), new Pen(0x000000), GetNeuronCircle(neuronCenters));
-        }
-
-        foreach (Geometry connectionLineGeometry in connectionsDrawingInformation.Values)
-        {
-          context.DrawGeometry(new SolidColorBrush(new Color(255,102,255,102)), new Pen(0x123832, 5), connectionLineGeometry);
+          context.DrawGeometry(neuronFillColor, blackOutlinePen, GetNeuronCircle(neuronCenters));
         }
       }
 
@@ -97,6 +107,25 @@ namespace NEAT_Visualizer.UserControls
     private static EllipseGeometry GetNeuronCircle(Point center)
     {
       return new EllipseGeometry(new Rect(center.X, center.Y, NEURON_CIRCLE_RADIUS * 2, NEURON_CIRCLE_RADIUS * 2));
+    }
+
+    private uint ColorToUInt(Color color)
+    {
+      return (uint)((color.A << 24) | (color.R << 16) |
+                    (color.G << 8) | (color.B << 0));
+    }
+
+    private struct LineData
+    {
+      public LineData(Point start, Point end)
+      {
+        Start = start;
+        End = end;
+      }
+
+      public Point Start { get; }
+
+      public Point End { get; }
     }
   }
 }

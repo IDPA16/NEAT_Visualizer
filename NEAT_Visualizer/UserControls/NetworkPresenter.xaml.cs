@@ -37,7 +37,7 @@ namespace NEAT_Visualizer.UserControls
     {
       if (Network != null) // no need to draw when no network is available.
       {
-        List<Geometry> geometryToDraw = new List<Geometry>();
+        Dictionary<Neuron, Geometry> neuronsDrawingInformation = new Dictionary<Neuron, Geometry>();
 
         // construct all neurons
         int layerCount = Network.Neurons.Max(n => n.Layer) + 1; // smallest layer is 0
@@ -48,29 +48,28 @@ namespace NEAT_Visualizer.UserControls
         int ystep = (height - margin) / (layerCount + 1);
 
         var layers = Network.Neurons.GroupBy(n => n.Layer).ToList();
-        for (int i = 0; i < layerCount; i++)
+        for (int layer = 0; layer < layerCount; layer++)
         {
-          var neurons = layers[i];
+          var neurons = layers[layer];
           //int layer = neurons.First().Layer;
           int neuronsInLayer = neurons.Count();
-          int ypos = (height - 2 * margin) - ystep * (i + 1);
+          int ypos = (height - 2 * margin) - ystep * (layer + 1);
           int xstep = (widht - margin) / (neuronsInLayer + 1);
 
           for (int j = 0; j < neuronsInLayer; j++)
           {
-            //var neuron = neurons.ElementAt(j);
+            var neuron = neurons.ElementAt(j);
             int xpos = xstep * (j + 1);
-            geometryToDraw.Add(GetNeuronCircle(xpos, ypos));
+            neuronsDrawingInformation.Add(neuron, GetNeuronCircle(xpos, ypos));
           }
         }
 
-        // draw all geometry objects
-        foreach (var geometry in geometryToDraw)
+        // draw all neurons
+        foreach (var geometry in neuronsDrawingInformation.Values)
         {
           context.DrawGeometry(new SolidColorBrush(new Color(255, 102, 255, 102)), new Pen(0x000000), geometry);
         }
       }
-
 
       base.Render(context);
     }

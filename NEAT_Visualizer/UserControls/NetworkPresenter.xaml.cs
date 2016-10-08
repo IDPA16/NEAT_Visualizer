@@ -12,6 +12,7 @@ namespace NEAT_Visualizer.UserControls
   [DoNotNotify]
   public class NetworkPresenter : Canvas
   {
+    // TODO parameter and dependend on amount of layers
     private const int NEURON_CIRCLE_RADIUS = 50;
 
     public NetworkPresenter()
@@ -37,7 +38,7 @@ namespace NEAT_Visualizer.UserControls
     {
       if (Network != null) // no need to draw when no network is available.
       {
-        Dictionary<Neuron, Geometry> neuronsDrawingInformation = new Dictionary<Neuron, Geometry>();
+        var neuronsDrawingInformation = new Dictionary<Neuron, Point>();
 
         // construct all neurons
         int layerCount = Network.Neurons.Max(n => n.Layer) + 1; // smallest layer is 0
@@ -51,7 +52,6 @@ namespace NEAT_Visualizer.UserControls
         for (int layer = 0; layer < layerCount; layer++)
         {
           var neurons = layers[layer];
-          //int layer = neurons.First().Layer;
           int neuronsInLayer = neurons.Count();
           int ypos = (height - 2 * margin) - ystep * (layer + 1);
           int xstep = (widht - margin) / (neuronsInLayer + 1);
@@ -60,23 +60,43 @@ namespace NEAT_Visualizer.UserControls
           {
             var neuron = neurons.ElementAt(j);
             int xpos = xstep * (j + 1);
-            neuronsDrawingInformation.Add(neuron, GetNeuronCircle(xpos, ypos));
+            Point neuronCenter = new Point(xpos, ypos);
+            neuronsDrawingInformation.Add(neuron, neuronCenter);
+          }
+        }
+
+        var connectionsDrawingInformation = new Dictionary<Connection, Geometry>();
+        
+        foreach (var neuronDrawingInformation in neuronsDrawingInformation)
+        {
+          // foreach incoming connection of the neuron
+          foreach (var connection in neuronDrawingInformation.Key.IncomingConnections)
+          {
+            Point startPoint = neuronsDrawingInformation[connection.Neuron];
+            // the location of the neuron itself
+            Point endPoint = neuronDrawingInformation.Value;
+            connectionsDrawingInformation.Add(connection, new LineGeometry(startPoint, endPoint));
           }
         }
 
         // draw all neurons
-        foreach (var geometry in neuronsDrawingInformation.Values)
+        foreach (Point neuronCenters in neuronsDrawingInformation.Values)
         {
-          context.DrawGeometry(new SolidColorBrush(new Color(255, 102, 255, 102)), new Pen(0x000000), geometry);
+          context.DrawGeometry(new SolidColorBrush(new Color(255, 102, 255, 102)), new Pen(0x000000), GetNeuronCircle(neuronCenters));
+        }
+
+        foreach (Geometry connectionLineGeometry in connectionsDrawingInformation.Values)
+        {
+          context.DrawGeometry(new SolidColorBrush(new Color(255,102,255,102)), new Pen(0x123832, 5), connectionLineGeometry);
         }
       }
 
       base.Render(context);
     }
 
-    private static EllipseGeometry GetNeuronCircle(double x, double y)
+    private static EllipseGeometry GetNeuronCircle(Point center)
     {
-      return new EllipseGeometry(new Rect(x, y, NEURON_CIRCLE_RADIUS * 2, NEURON_CIRCLE_RADIUS * 2));
+      return new EllipseGeometry(new Rect(center.X, center.Y, NEURON_CIRCLE_RADIUS * 2, NEURON_CIRCLE_RADIUS * 2));
     }
   }
 }

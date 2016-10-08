@@ -2,7 +2,6 @@
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Shapes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using NEAT_Visualizer.Model;
@@ -13,9 +12,6 @@ namespace NEAT_Visualizer.UserControls
   [DoNotNotify]
   public class NetworkPresenter : Canvas
   {
-    // TODO parameter and dependend on amount of layers
-    private const int NEURON_CIRCLE_RADIUS = 50;
-
     public NetworkPresenter()
     {
       this.InitializeComponent();
@@ -42,14 +38,22 @@ namespace NEAT_Visualizer.UserControls
         var neuronsDrawingInformation = new Dictionary<Neuron, Point>();
 
         // construct all neurons
+        // TODO following two lines can be optimized
         int layerCount = Network.Neurons.Max(n => n.Layer) + 1; // smallest layer is 0
+        var layers = Network.Neurons.GroupBy(n => n.Layer).ToList();
 
         int height = (int)Bounds.Height;
         int widht = (int)Bounds.Width;
-        const int margin = 50;
+        int smallestDimension = height > widht ? widht : height;
+        const int circleMargin = 5;
+        int maxNeuronsInLayers = layers.ToList().Max(layer => layer.Count());
+        int biggerNeuronDimension = layerCount > maxNeuronsInLayers ? layerCount : maxNeuronsInLayers;
+        // + 2 to keep the margin in count
+        int neuronCircleRadius = (smallestDimension / (biggerNeuronDimension + 2) - circleMargin) / 2;
+        int margin = neuronCircleRadius;
+
         int ystep = (height - margin) / (layerCount + 1);
 
-        var layers = Network.Neurons.GroupBy(n => n.Layer).ToList();
         for (int layer = 0; layer < layerCount; layer++)
         {
           var neurons = layers[layer];
@@ -74,10 +78,10 @@ namespace NEAT_Visualizer.UserControls
           foreach (var connection in neuronDrawingInformation.Key.IncomingConnections)
           {
             Point leftTopOfStartNeuron = neuronsDrawingInformation[connection.Neuron];
-            Point startPoint = leftTopOfStartNeuron.WithX(leftTopOfStartNeuron.X + NEURON_CIRCLE_RADIUS).WithY(leftTopOfStartNeuron.Y + NEURON_CIRCLE_RADIUS);
+            Point startPoint = leftTopOfStartNeuron.WithX(leftTopOfStartNeuron.X + neuronCircleRadius).WithY(leftTopOfStartNeuron.Y + neuronCircleRadius);
             // the location of the neuron itself
             Point leftTopOfEndNeuron = neuronDrawingInformation.Value;
-            Point endPoint = leftTopOfEndNeuron.WithX(leftTopOfEndNeuron.X + NEURON_CIRCLE_RADIUS).WithY(leftTopOfEndNeuron.Y + NEURON_CIRCLE_RADIUS);
+            Point endPoint = leftTopOfEndNeuron.WithX(leftTopOfEndNeuron.X + neuronCircleRadius).WithY(leftTopOfEndNeuron.Y + neuronCircleRadius);
 
             connectionsDrawingInformation.Add(connection, new LineData(startPoint, endPoint));
           }
@@ -97,16 +101,16 @@ namespace NEAT_Visualizer.UserControls
         // draw all neurons
         foreach (Point neuronCenters in neuronsDrawingInformation.Values)
         {
-          context.DrawGeometry(neuronFillColor, blackOutlinePen, GetNeuronCircle(neuronCenters));
+          context.DrawGeometry(neuronFillColor, blackOutlinePen, GetNeuronCircle(neuronCenters, neuronCircleRadius));
         }
       }
 
       base.Render(context);
     }
 
-    private static EllipseGeometry GetNeuronCircle(Point center)
+    private static EllipseGeometry GetNeuronCircle(Point center, int circleRadius)
     {
-      return new EllipseGeometry(new Rect(center.X, center.Y, NEURON_CIRCLE_RADIUS * 2, NEURON_CIRCLE_RADIUS * 2));
+      return new EllipseGeometry(new Rect(center.X, center.Y, circleRadius * 2, circleRadius * 2));
     }
 
     private uint ColorToUInt(Color color)

@@ -204,10 +204,8 @@
     <Compile Include="Model\NeuralNetwork.cs" />
     <Compile Include="Model\Neuron.cs" />
     <Compile Include="Model\Species.cs" />
-    <Compile Include="UserControls\NetworkStructuresCanvasDrawer.cs" />
-    <Compile Include="UserControls\INeuralNetworkVisualizer.cs" />
-    <Compile Include="UserControls\NeuralNetworkVisualizer.xaml.cs">
-      <DependentUpon>NeuralNetworkVisualizer.xaml</DependentUpon>
+    <Compile Include="UserControls\NetworkPresenter.xaml.cs">
+      <DependentUpon>NetworkPresenter.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Dialogs\OpenFileDialogViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\OpenFolderDialogViewModel.cs" />
@@ -234,7 +232,7 @@
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UserControls\NeuralNetworkVisualizer.xaml">
+    <EmbeddedResource Include="UserControls\NetworkPresenter.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -12,11 +12,8 @@
       <ListBox Items="{Binding Species}" SelectedIndex="{Binding SelectedSpecies, Mode=TwoWay}" Width="100" BorderThickness="1" Margin="-1,0,0,0" Name="SpeciesListBox" />
       <ListBox Items="{Binding Networks}" SelectedIndex="{Binding SelectedNetwork, Mode=TwoWay}" Width="100" BorderThickness="1" Margin="-1,0,0,0" Name="NetworksListBox" />
     </StackPanel>
-    <!--<Canvas DockPanel.Dock="Right" Name="Canvas">
-    </Canvas>-->
-    <controls:NeuralNetworkVisualizer DockPanel.Dock="Right" Name="Canvas">
-      
-    </controls:NeuralNetworkVisualizer>
-  
-</DockPanel>
+
+    <controls:NetworkPresenter Name="NetworkPresenter" Network="{Binding CurrentNetwork}" />
+    
+  </DockPanel>
 </Window>

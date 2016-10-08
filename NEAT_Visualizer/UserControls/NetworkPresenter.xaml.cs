@@ -53,7 +53,7 @@ namespace NEAT_Visualizer.UserControls
           var neurons = layers[i];
           //int layer = neurons.First().Layer;
           int neuronsInLayer = neurons.Count();
-          int ypos = ystep * (i + 1);
+          int ypos = (height - 2 * margin) - ystep * (i + 1);
           int xstep = (widht - margin) / (neuronsInLayer + 1);
 
           for (int j = 0; j < neuronsInLayer; j++)

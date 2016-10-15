@@ -1,11 +1,8 @@
-﻿using System;
-using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
-using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using NEAT_Visualizer.Interaction.Services;
-using NEAT_Visualizer.Interaction.UserInteractions;
+using Avalonia.Media;
+using NEAT_Visualizer.UserControls;
 using NEAT_Visualizer.ViewModels;
 using PropertyChanged;
 
@@ -20,9 +17,6 @@ namespace NEAT_Visualizer.Views
 
       InitializeComponent();
       App.AttachDevTools(this);
-
-      var path = this.FindControl<Path>("SVGHost");     
-      //path.Data = ?
     }
 
     private void InitializeComponent()

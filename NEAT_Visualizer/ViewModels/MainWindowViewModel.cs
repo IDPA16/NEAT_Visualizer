@@ -22,17 +22,17 @@ namespace NEAT_Visualizer.ViewModels
 
     private IList<Generation> generations => business.Generations;
 
-    private IList<Species> species => 
+    private IList<Species> species =>
       SelectedGeneration >= 0
-      ? generations[SelectedGeneration >= generations.Count ? 0 : SelectedGeneration].Species 
+      ? generations[SelectedGeneration >= generations.Count ? 0 : SelectedGeneration].Species
       : new List<Species>();
-    private IList<NeuralNetwork> networks => 
-      SelectedSpecies >= 0 
-        ? species[SelectedSpecies >= species.Count ? 0 
+    private IList<NeuralNetwork> networks =>
+      SelectedSpecies >= 0
+        ? species[SelectedSpecies >= species.Count ? 0
         : SelectedSpecies].Networks : new List<NeuralNetwork>();
-    private NeuralNetwork currentNetwork => 
-      SelectedNetwork >= 0 
-        ? networks[SelectedNetwork >= networks.Count ? 0 
+    public NeuralNetwork CurrentNetwork =>
+      SelectedNetwork >= 0
+        ? networks[SelectedNetwork >= networks.Count ? 0
         : SelectedNetwork] : null;
 
     #region ctors and initializers

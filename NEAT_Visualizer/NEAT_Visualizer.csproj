@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -188,9 +188,9 @@
     <Compile Include="Business\DataLoaders\GenerationLoader.cs" />
     <Compile Include="Business\DataLoaders\JsonRepresentation.cs" />
     <Compile Include="Business\DataLoaders\JsonToModelMapper.cs" />
-    <Compile Include="Business\GenerationProvider\GenerationMetadata.cs" />
-    <Compile Include="Business\GenerationProvider\GenerationProvider.cs" />
-    <Compile Include="Business\GenerationProvider\IGenerationProvider.cs" />
+	<Compile Include="Business\GenerationProvider\GenerationMetadata.cs" />		
+    <Compile Include="Business\GenerationProvider\GenerationProvider.cs" />		
+    <Compile Include="Business\GenerationProvider\IGenerationProvider.cs" />		
     <Compile Include="Business\GenerationProvider\LazyGenerationProvider.cs" />
     <Compile Include="Business\IVisualizerBusiness.cs" />
     <Compile Include="Business\VisualizerBusiness.cs" />
@@ -208,6 +208,9 @@
     <Compile Include="Model\NeuralNetwork.cs" />
     <Compile Include="Model\Neuron.cs" />
     <Compile Include="Model\Species.cs" />
+    <Compile Include="UserControls\NetworkPresenter.xaml.cs">
+      <DependentUpon>NetworkPresenter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Dialogs\OpenFileDialogViewModel.cs" />
     <Compile Include="ViewModels\Dialogs\OpenFolderDialogViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
@@ -231,6 +234,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UserControls\NetworkPresenter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.29.4\build\dotnet\Fody.targets" Condition="Exists('..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" />

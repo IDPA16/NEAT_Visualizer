@@ -11,7 +11,8 @@ namespace NEAT_Visualizer.Business.DataLoaders
       var generation = new Generation
       {
         GenerationsPassed = jsonRoot.generationsPassed,
-        PopulationSize = jsonRoot.populationSize,
+        //PopulationSize = jsonRoot.populationSize, //TODO verify this is correct
+        PopulationSize = jsonRoot.species.Sum(z => z.population.Length)
       };
 
       foreach (var species in jsonRoot.species)

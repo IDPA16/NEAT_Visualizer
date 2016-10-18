@@ -25,9 +25,9 @@ namespace NEAT_Visualizer.BusinessTest
 
     [Theory]
     [InlineData(JSON_DIR + "generation_1.json")]
-    [InlineData(JSON_DIR + "generation_5.json")]
-    [InlineData(JSON_DIR + "generation_9.json")]
-    [InlineData(JSON_DIR + "generation_60.json")]
+    [InlineData(JSON_DIR + "generation_2.json")]
+    [InlineData(JSON_DIR + "generation_3.json")]
+    [InlineData(JSON_DIR + "generation_4.json")]
     public void CanLoadJsonFileWithoutError(string relativeJsonPath)
     {
       // Act
@@ -50,9 +50,9 @@ namespace NEAT_Visualizer.BusinessTest
 
       // Assert (that most stuff is correct...)
       Assert.Equal(150, generation.PopulationSize);
-      Assert.Equal(9f, generation.FitnessHighscore);
-      Assert.Equal(3, generation.Species.Last().Networks.Last().Neurons.Last().Layer);
-      Assert.Equal(4, generation.Species.ToList()[0].Networks.ToList()[2].Fitness);
+      Assert.Equal(3f, generation.FitnessHighscore);
+      Assert.Equal(1, generation.Species.Last().Networks.Last().Neurons.Last().Layer);
+      Assert.Equal(2, generation.Species.ToList()[0].Networks.ToList()[2].Fitness);
     }
 
     [Theory]

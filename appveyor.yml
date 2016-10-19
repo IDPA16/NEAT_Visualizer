@@ -6,10 +6,10 @@ artifacts:
   - path: NEAT_Visualizer.zip
     name: NEAT_Visualizer
 deploy:
+  provider: GitHub
+  auth_token:
+    secure: wvQeRLDr/jbJxn7YtxE4W59hmbpMLjN9ReA05MqZKoXN171i3i3IEF9pkZk7QA6P
+  artifact: NEAT_Visualizer
   on:
-    provider: GitHub
-    auth_token:
-      secure: wvQeRLDr/jbJxn7YtxE4W59hmbpMLjN9ReA05MqZKoXN171i3i3IEF9pkZk7QA6P
     appveyor_repo_tag: true
-    artifact: NEAT_Visualizer
 

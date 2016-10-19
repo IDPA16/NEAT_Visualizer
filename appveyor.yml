@@ -1,3 +1,15 @@
 before_build:
   - nuget restore
+before_deploy:
+  - 7z a NEAT_Visualizer.zip NEAT_Visualizer\bin\Release
+artifacts:
+  - path: NEAT_Visualizer.zip
+    name: NEAT_Visualizer
+deploy:
+  on:
+    provider: GitHub
+    auth_token:
+      secure: wvQeRLDr/jbJxn7YtxE4W59hmbpMLjN9ReA05MqZKoXN171i3i3IEF9pkZk7QA6P
+    appveyor_repo_tag: true
+    artifact: NEAT_Visualizer
 

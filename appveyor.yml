@@ -6,7 +6,7 @@ after_build:
   - cd NEAT_Visualizer\bin\Release
   - 7z a NEAT_Visualizer.zip *.exe *.dll
 artifacts:
-  - path: NEAT_Visualizer.zip
+  - path: NEAT_Visualizer\bin\Release\NEAT_Visualizer.zip
     name: NEAT_Visualizer
 deploy:
   provider: GitHub

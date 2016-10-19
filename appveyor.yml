@@ -2,8 +2,9 @@ configuration:
   - Release
 before_build:
   - nuget restore
-after_build:
-  - 7z a NEAT_Visualizer.zip NEAT_Visualizer\bin\Release\*.exe NEAT_Visualizer\bin\Release\*.dll
+before_deploy:
+  - cd NEAT_Visualizer\bin\Release
+  - 7z a NEAT_Visualizer.zip *.exe *.dll
 artifacts:
   - path: NEAT_Visualizer.zip
     name: NEAT_Visualizer

@@ -186,8 +186,16 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Business\DataLoaders\IGenerationLoader.cs" />
     <Compile Include="Business\DataLoaders\GenerationLoader.cs" />
+    <Compile Include="Business\DataLoaders\IMetadataLoader.cs" />
     <Compile Include="Business\DataLoaders\JsonRepresentation.cs" />
     <Compile Include="Business\DataLoaders\JsonToModelMapper.cs" />
+    <Compile Include="Business\DataLoaders\MetatdataLoader.cs" />
+    <Compile Include="Business\GenerationProvider\EmptyGenerationProvider.cs" />
+    <Compile Include="Business\GenerationProvider\GenerationMetadata.cs" />
+    <Compile Include="Business\GenerationProvider\GenerationProvider.cs" />
+    <Compile Include="Business\GenerationProvider\GenerationProviderFactory.cs" />
+    <Compile Include="Business\GenerationProvider\IGenerationProvider.cs" />
+    <Compile Include="Business\GenerationProvider\LazyGenerationProvider.cs" />
     <Compile Include="Business\IVisualizerBusiness.cs" />
     <Compile Include="Business\VisualizerBusiness.cs" />
     <Compile Include="Interaction\Commands\DelegateCommand.cs" />

@@ -8,11 +8,9 @@ namespace NEAT_Visualizer.Business
   {
     public VisualizerBusiness(IGenerationLoader networkLoader)
     {
-      NetworkLoader = networkLoader;
+      GenerationLoader = networkLoader;
     }
 
-    public IGenerationLoader NetworkLoader { get; }
-
-    public IList<Generation> Generations { get; } = new List<Generation>();
+    public IGenerationLoader GenerationLoader { get; }
   }
 }

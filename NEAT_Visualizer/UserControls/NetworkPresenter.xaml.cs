@@ -97,14 +97,7 @@ namespace NEAT_Visualizer.UserControls
         // draw all lines (draw connections before neurons, so neurons overlap the connections)
         foreach (LineData line in connectionsDrawingInformation.Values)
         {
-          if (/*IS RECURSIVE*/ line.End.Y > line.Start.Y)
-          {
-            context.DrawLine(redLinePen, line.Start, line.End);
-          }
-          else /*normal line*/
-          {
-            context.DrawLine(blackLinePen, line.Start, line.End);
-          }
+          context.DrawLine(line.End.Y > line.Start.Y ? redLinePen : blackLinePen, line.Start, line.End);
         }
 
         // draw all neurons

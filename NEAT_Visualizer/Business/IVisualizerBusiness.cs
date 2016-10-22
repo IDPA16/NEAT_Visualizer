@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using NEAT_Visualizer.Business.DataLoaders;
-using NEAT_Visualizer.Model;
+﻿using NEAT_Visualizer.Business.DataLoaders;
 
 namespace NEAT_Visualizer.Business
 {

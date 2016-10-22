@@ -60,10 +60,10 @@ namespace NEAT_Visualizer.BusinessTest
     public void LoadsMetadataFileCorrectly(string relativeJsonPath)
     {
       // Act
-      List<GenerationMetadata> metadata = metatdataLoader.LoadMetadata(new FileInfo(Path.GetFullPath(relativeJsonPath))).ToList();
+      var metadata = metatdataLoader.LoadMetadata(new FileInfo(Path.GetFullPath(relativeJsonPath))).ToList();
       Assert.Equal(4, metadata.Count);
-      Assert.Equal(3m, metadata.First().HighestFitness);
-      Assert.Equal(3m, metadata.Last().HighestFitness);
+      Assert.Equal(3f, metadata.First().HighestFitness);
+      Assert.Equal(3f, metadata.Last().HighestFitness);
     }
   }
 }

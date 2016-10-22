@@ -8,7 +8,7 @@ namespace NEAT_Visualizer.Business.GenerationProvider
 {
   public struct GenerationMetadata
   {
-    public GenerationMetadata(int generationNumber, decimal highestFitness)
+    public GenerationMetadata(int generationNumber, float highestFitness)
     {
       GenerationNumber = generationNumber;
       HighestFitness = highestFitness;
@@ -16,6 +16,6 @@ namespace NEAT_Visualizer.Business.GenerationProvider
 
     public int GenerationNumber { get; set; }
 
-    public decimal HighestFitness { get; set; }
+    public float HighestFitness { get; set; }
   }
 }

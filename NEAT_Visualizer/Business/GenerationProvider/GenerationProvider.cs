@@ -1,22 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NEAT_Visualizer.Business.DataLoaders;
 using NEAT_Visualizer.Model;
 
 namespace NEAT_Visualizer.Business.GenerationProvider
 {
   public class GenerationProvider : IGenerationProvider
   {
-    public Generation GetGeneration(int index)
+    private readonly List<Generation> generations;
+
+    public GenerationProvider(List<FileInfo> files, IGenerationLoader loader)
     {
-      throw new NotImplementedException();
+      generations = files.Select(loader.LoadGeneration).ToList();
     }
 
-    public IList<GenerationMetadata> GetGenerations()
+    public GenerationProvider(DirectoryInfo directory, IGenerationLoader loader)
     {
-      throw new NotImplementedException();
+      generations = loader.LoadAllGenerations(directory);
+    }
+
+    public Generation GetGeneration(int index)
+    {
+      return generations[index];
+    }
+
+    public IEnumerable<GenerationMetadata> GetGenerations()
+    {
+      return generations.Select(g => g.ToMetadata());
+    }
+  }
+
+  public static class GenerationExtensions
+  {
+    public static GenerationMetadata ToMetadata(this Generation generation)
+    {
+      return new GenerationMetadata(generation.GenerationsPassed, generation.FitnessHighscore);
     }
   }
 }

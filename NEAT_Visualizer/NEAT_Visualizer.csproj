@@ -190,6 +190,7 @@
     <Compile Include="Business\DataLoaders\JsonRepresentation.cs" />
     <Compile Include="Business\DataLoaders\JsonToModelMapper.cs" />
     <Compile Include="Business\DataLoaders\MetatdataLoader.cs" />
+    <Compile Include="Business\GenerationProvider\EmptyGenerationProvider.cs" />
     <Compile Include="Business\GenerationProvider\GenerationMetadata.cs" />
     <Compile Include="Business\GenerationProvider\GenerationProvider.cs" />
     <Compile Include="Business\GenerationProvider\GenerationProviderFactory.cs" />

@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Avalonia;
 using NEAT_Visualizer.Business;
+using NEAT_Visualizer.Business.GenerationProvider;
 using NEAT_Visualizer.Interaction.Commands;
 using NEAT_Visualizer.Interaction.UserInteractions;
 using NEAT_Visualizer.Model;
@@ -19,11 +21,13 @@ namespace NEAT_Visualizer.ViewModels
 
     private readonly IVisualizerBusiness business;
 
-    private IList<Generation> generations => business.Generations;
+    private IGenerationProvider currenGenerationProvider;
 
     private IList<Species> species =>
       SelectedGeneration >= 0
-      ? generations[SelectedGeneration >= generations.Count ? 0 : SelectedGeneration].Species
+      ? currenGenerationProvider
+        .GetGeneration(SelectedGeneration >= currenGenerationProvider.GenerationCount ? 0 : SelectedGeneration)
+        .Species
       : new List<Species>();
     private IList<NeuralNetwork> networks =>
       SelectedSpecies >= 0
@@ -84,7 +88,7 @@ namespace NEAT_Visualizer.ViewModels
     public ObservableCollection<string> Generations
       =>
         new ObservableCollection<string>(
-          generations.OrderBy(g => g.GenerationsPassed).Select(g => $" {g.GenerationsPassed}{DELIMITER}{g.FitnessHighscore}"));
+          currenGenerationProvider.GetGenerations().Select(g => $" {g.GenerationNumber}{DELIMITER}{g.FitnessHighscore}"));
 
     public ObservableCollection<string> Species
       => new ObservableCollection<string>(
@@ -111,8 +115,10 @@ namespace NEAT_Visualizer.ViewModels
     {
       if (interaction.UserInteractionResult == UserInteractionOptions.Ok)
       {
-        business.Generations.Clear();
-        business.Generations.Add(business.NetworkLoader.LoadGeneration((interaction.Content as OpenFileDialogViewModel).SelectedFile));
+        var file = (interaction.Content as OpenFileDialogViewModel).SelectedFile;
+        currenGenerationProvider = GenerationProviderFactory.Get(file, business.GenerationLoader);
+
+        // ReSharper disable once RedundantArgumentDefaultValue
         OnPropertyChanged(null);
         SelectedGeneration = 0;
       }
@@ -133,12 +139,10 @@ namespace NEAT_Visualizer.ViewModels
     {
       if (interaction.UserInteractionResult == UserInteractionOptions.Ok)
       {
-        business.Generations.Clear();
-        foreach (var generation in business.NetworkLoader.LoadAllGenerations((interaction.Content as OpenFolderDialogViewModel).SelectedDirectory))
-        {
-          business.Generations.Add(generation);
-        }
+        var directory = (interaction.Content as OpenFolderDialogViewModel).SelectedDirectory;
+        currenGenerationProvider = GenerationProviderFactory.Get(directory, business.GenerationLoader);
 
+        // ReSharper disable once RedundantArgumentDefaultValue
         OnPropertyChanged(null);
         SelectedGeneration = 0;
       }

@@ -25,6 +25,8 @@ namespace NEAT_Visualizer.Business.GenerationProvider
       return generations[index];
     }
 
+    public int GenerationCount => generations.Count;
+
     public IEnumerable<GenerationMetadata> GetGenerations()
     {
       return generations.Select(g => g.ToMetadata());

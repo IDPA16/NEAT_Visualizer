@@ -6,8 +6,6 @@ namespace NEAT_Visualizer.Business
 {
   public interface IVisualizerBusiness
   {
-    IGenerationLoader NetworkLoader { get; }
-
-    IList<Generation> Generations { get; }
+    IGenerationLoader GenerationLoader { get; }
   }
 }

@@ -8,5 +8,7 @@ namespace NEAT_Visualizer.Business.GenerationProvider
     IEnumerable<GenerationMetadata> GetGenerations();
 
     Generation GetGeneration(int index);
+
+    int GenerationCount { get; }
   }
 }

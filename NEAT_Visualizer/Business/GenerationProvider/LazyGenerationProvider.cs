@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using NEAT_Visualizer.Business.DataLoaders;
 using NEAT_Visualizer.Model;
 
@@ -14,7 +15,7 @@ namespace NEAT_Visualizer.Business.GenerationProvider
 
     //private readonly List<FileInfo> generationFiles;
     private readonly IEnumerable<GenerationMetadata> metadata;
-    private readonly  List<Lazy<Generation>> generations = new List<Lazy<Generation>>();
+    private readonly List<Lazy<Generation>> generations = new List<Lazy<Generation>>();
 
     /// <summary>
     /// 
@@ -48,5 +49,7 @@ namespace NEAT_Visualizer.Business.GenerationProvider
     {
       return metadata;
     }
+
+    public int GenerationCount => generations.Count;
   }
 }

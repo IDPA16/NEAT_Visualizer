@@ -35,5 +35,7 @@ namespace NEAT_Visualizer.Business.GenerationProvider
 
       return new GenerationProvider(files.ToList(), loader);
     }
+
+    public static IGenerationProvider GetEmptyGenerationProvider() => new EmptyGenerationProvider();
   }
 }

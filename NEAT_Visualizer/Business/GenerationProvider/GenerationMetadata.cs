@@ -2,14 +2,14 @@
 {
   public struct GenerationMetadata
   {
-    public GenerationMetadata(int generationNumber, float highestFitness)
+    public GenerationMetadata(int generationNumber, float fitnessHighscore)
     {
       GenerationNumber = generationNumber;
-      HighestFitness = highestFitness;
+      FitnessHighscore = fitnessHighscore;
     }
 
     public int GenerationNumber { get; set; }
 
-    public float HighestFitness { get; set; }
+    public float FitnessHighscore { get; set; }
   }
 }

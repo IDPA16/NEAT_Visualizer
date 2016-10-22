@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using NEAT_Visualizer.Model;
 
 namespace NEAT_Visualizer.Business.DataLoaders

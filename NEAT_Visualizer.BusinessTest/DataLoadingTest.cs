@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using NEAT_Visualizer.Business.DataLoaders;
-using NEAT_Visualizer.Business.GenerationProvider;
 using NEAT_Visualizer.Model;
 using Xunit;
 

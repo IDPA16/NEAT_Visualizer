@@ -1,8 +1,5 @@
 ﻿using Avalonia.Controls;
-using Avalonia.Controls.Shapes;
 using Avalonia.Markup.Xaml;
-using Avalonia.Media;
-using NEAT_Visualizer.UserControls;
 using NEAT_Visualizer.ViewModels;
 using PropertyChanged;
 

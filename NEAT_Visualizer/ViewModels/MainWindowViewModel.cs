@@ -21,7 +21,7 @@ namespace NEAT_Visualizer.ViewModels
 
     private readonly IVisualizerBusiness business;
 
-    private IGenerationProvider currenGenerationProvider;
+    private IGenerationProvider currenGenerationProvider = GenerationProviderFactory.GetEmptyGenerationProvider();
 
     private IList<Species> species =>
       SelectedGeneration >= 0

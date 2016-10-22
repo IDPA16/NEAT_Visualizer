@@ -1,5 +1,10 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
+// ReSharper disable RedundantUsingDirective
+using Avalonia.Diagnostics;
+using Avalonia.Logging.Serilog;
+using Serilog;
+// ReSharper restore RedundantUsingDirective
 using Avalonia.Markup.Xaml;
 
 namespace NEAT_Visualizer

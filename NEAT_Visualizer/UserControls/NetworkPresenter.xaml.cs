@@ -88,14 +88,23 @@ namespace NEAT_Visualizer.UserControls
         }
 
         uint black = ColorToUInt(new Color(255, 0, 0, 0));
+        uint red = ColorToUInt(new Color(255, 255, 0, 0));
         var blackLinePen = new Pen(black, 4);
+        var redLinePen = new Pen(red);
         var blackOutlinePen = new Pen(black);
         var neuronFillColor = new SolidColorBrush(new Color(255, 102, 255, 102));
 
         // draw all lines (draw connections before neurons, so neurons overlap the connections)
         foreach (LineData line in connectionsDrawingInformation.Values)
         {
-          context.DrawLine(blackLinePen, line.Start, line.End);
+          if (/*IS RECURSIVE*/ line.End.Y > line.Start.Y)
+          {
+            context.DrawLine(redLinePen, line.Start, line.End);
+          }
+          else /*normal line*/
+          {
+            context.DrawLine(blackLinePen, line.Start, line.End);
+          }
         }
 
         // draw all neurons

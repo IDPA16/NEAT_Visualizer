@@ -17,7 +17,7 @@ namespace NEAT_Visualizer.Business.DataLoaders
 
       for (int i = 0; i < generationInfo.Count; i++)
       {
-        decimal maxFitness = generationInfo[i].max_fitness;
+        float maxFitness = generationInfo[i].max_fitness;
         metaDatas.Add(new GenerationMetadata(i + 1, maxFitness));
       }
 

@@ -17,7 +17,7 @@ namespace NEAT_Visualizer.Business.GenerationProvider
 
     //private readonly List<FileInfo> generationFiles;
     private readonly IEnumerable<GenerationMetadata> metadata;
-    private List<Lazy<Generation>> generations;
+    private readonly  List<Lazy<Generation>> generations = new List<Lazy<Generation>>();
 
     /// <summary>
     /// 

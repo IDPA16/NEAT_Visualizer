@@ -89,13 +89,13 @@ namespace NEAT_Visualizer.UserControls
 
         uint black = ColorToUInt(new Color(255, 0, 0, 0));
         //uint red = ColorToUInt(new Color(255, 255, 0, 0));
-        uint cyan = ColorToUInt(new Color(255, 0, 255, 255));
-        uint turquoise = ColorToUInt(new Color(255, 0, 229, 238));
-        uint color1 = 0xFF51DBAF;
-        uint color2 = 0xFFFFA347;
+        //uint cyan = ColorToUInt(new Color(255, 0, 255, 255));
+        //uint turquoise = ColorToUInt(new Color(255, 0, 229, 238));
+        uint turquoise = 0xFF51DBAF;
+        uint orange = 0xFFFFA347;
 
-        var normalConnectionPen = new Pen(color1, 4);
-        var recursiveConnectionPen = new Pen(color2, 2);
+        var normalConnectionPen = new Pen(turquoise, 4);
+        var recursiveConnectionPen = new Pen(orange, 2);
         var blackOutlinePen = new Pen(black);
         var neuronFillColor = new SolidColorBrush(new Color(255, 102, 255, 102));
 

@@ -88,9 +88,14 @@ namespace NEAT_Visualizer.UserControls
         }
 
         uint black = ColorToUInt(new Color(255, 0, 0, 0));
-        uint red = ColorToUInt(new Color(255, 255, 0, 0));
-        var blackLinePen = new Pen(black, 4);
-        var redLinePen = new Pen(red);
+        //uint red = ColorToUInt(new Color(255, 255, 0, 0));
+        uint cyan = ColorToUInt(new Color(255, 0, 255, 255));
+        uint turquoise = ColorToUInt(new Color(255, 0, 229, 238));
+        uint color1 = 0xFF51DBAF;
+        uint color2 = 0xFFFFA347;
+
+        var normalConnectionPen = new Pen(color1, 4);
+        var recursiveConnectionPen = new Pen(color2, 2);
         var blackOutlinePen = new Pen(black);
         var neuronFillColor = new SolidColorBrush(new Color(255, 102, 255, 102));
 
@@ -112,12 +117,12 @@ namespace NEAT_Visualizer.UserControls
         //draw normal connections first, so they dont overlap the red lines that represent recursive connections
         foreach (var line in normalConnections)
         {
-          context.DrawLine(blackLinePen, line.Start, line.End);
+          context.DrawLine(normalConnectionPen, line.Start, line.End);
         }
 
         foreach (var line in recursiveConnections)
         {
-          context.DrawLine(redLinePen, line.Start, line.End);
+          context.DrawLine(recursiveConnectionPen, line.Start, line.End);
         }
 
 

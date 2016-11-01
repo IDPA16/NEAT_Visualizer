@@ -24,8 +24,8 @@ namespace NEAT_Visualizer
       var app = new App();
 
       AppBuilder.Configure(app)
-      .UsePlatformDetect()
-      .SetupWithoutStarting();
+        .UsePlatformDetect()
+        .SetupWithoutStarting();
 
       bootstrapper.InitializeApplication();
       app.Start(bootstrapper.StartupWindow);

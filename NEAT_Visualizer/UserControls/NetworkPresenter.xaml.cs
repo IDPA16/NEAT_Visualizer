@@ -88,15 +88,43 @@ namespace NEAT_Visualizer.UserControls
         }
 
         uint black = ColorToUInt(new Color(255, 0, 0, 0));
-        var blackLinePen = new Pen(black, 4);
+        //uint red = ColorToUInt(new Color(255, 255, 0, 0));
+        //uint cyan = ColorToUInt(new Color(255, 0, 255, 255));
+        //uint turquoise = ColorToUInt(new Color(255, 0, 229, 238));
+        uint turquoise = 0xFF51DBAF;
+        uint orange = 0xFFFFA347;
+
+        var normalConnectionPen = new Pen(turquoise, 4);
+        var recursiveConnectionPen = new Pen(orange, 2);
         var blackOutlinePen = new Pen(black);
         var neuronFillColor = new SolidColorBrush(new Color(255, 102, 255, 102));
 
+        var normalConnections = new List<LineData>();
+        var recursiveConnections = new List<LineData>();
         // draw all lines (draw connections before neurons, so neurons overlap the connections)
         foreach (LineData line in connectionsDrawingInformation.Values)
         {
-          context.DrawLine(blackLinePen, line.Start, line.End);
+          if (line.End.Y > line.Start.Y)
+          {
+            recursiveConnections.Add(line);
+          }
+          else
+          {
+            normalConnections.Add(line);
+          }
         }
+
+        //draw normal connections first, so they dont overlap the red lines that represent recursive connections
+        foreach (var line in normalConnections)
+        {
+          context.DrawLine(normalConnectionPen, line.Start, line.End);
+        }
+
+        foreach (var line in recursiveConnections)
+        {
+          context.DrawLine(recursiveConnectionPen, line.Start, line.End);
+        }
+
 
         // draw all neurons
         foreach (Point neuronCenters in neuronsDrawingInformation.Values)

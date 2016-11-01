@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using NEAT_Visualizer.Business.DataLoaders;
 using NEAT_Visualizer.Model;
 
@@ -11,10 +13,11 @@ namespace NEAT_Visualizer.Business.GenerationProvider
   /// </summary>
   public class LazyGenerationProvider : IGenerationProvider
   {
+    public int MaxLoadedGenerations { get; set; } = 10;
 
     //private readonly List<FileInfo> generationFiles;
     private readonly IEnumerable<GenerationMetadata> metadata;
-    private readonly List<Lazy<Generation>> generations = new List<Lazy<Generation>>();
+    private readonly List<LazyCache<Generation>> generations = new List<LazyCache<Generation>>();
 
     /// <summary>
     /// 
@@ -27,7 +30,7 @@ namespace NEAT_Visualizer.Business.GenerationProvider
 
       foreach (FileInfo file in generationFiles.Values)
       {
-        generations.Add(new Lazy<Generation>(() => loader.LoadGeneration(file)));
+        generations.Add(new LazyCache<Generation>(() => loader.LoadGeneration(file)));
       }
     }
 
@@ -39,6 +42,16 @@ namespace NEAT_Visualizer.Business.GenerationProvider
     /// <returns></returns>
     public Generation GetGeneration(int index)
     {
+      // delete internal references to make sure when the generation is not used anymore,
+      // it can be removed by the GC.
+      var loadedGenerations = generations.Where(x => x.IsLoaded).ToList();
+      if (loadedGenerations.Count > MaxLoadedGenerations)
+      {
+        loadedGenerations.ForEach(x => x.ResetCache());
+        //Task.Run(() => GC.Collect()); // not required, because the GC will do it himself and it
+        // will be slowing down the application less.
+      }
+
       return generations[index].Value;
     }
 

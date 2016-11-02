@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using NEAT_Visualizer.Model;
 
 namespace NEAT_Visualizer.Business.DataLoaders
@@ -46,6 +47,13 @@ namespace NEAT_Visualizer.Business.DataLoaders
 
       var neurons = organism.network.neurons.Select(n => new Neuron() { Layer = n.layer }).ToList();
 
+      var geneEnumerator = organism.network.genome.genes.ToList().GetEnumerator();
+      var straightToOutputConnections = new List<JsonRepresentation.Gene1>();
+      while (geneEnumerator.MoveNext() && geneEnumerator.Current.from == 0)
+      {
+        straightToOutputConnections.Add(geneEnumerator.Current);
+      }  
+      
       // creates the connections from the genomes
       foreach (var genome in organism.network.genome.genes)
       {
@@ -54,6 +62,12 @@ namespace NEAT_Visualizer.Business.DataLoaders
           neurons[genome.to].IncomingConnections.Add(
             new Connection(neurons[genome.from], genome.weight, genome.historicalMarking));
         }
+      }
+
+      int maxLayer = neurons.Max(n => n.Layer);
+      foreach (var straightToOutputConnection in straightToOutputConnections)
+      {
+        neurons[straightToOutputConnection.to].Layer = maxLayer;
       }
 
       network.Neurons = neurons;

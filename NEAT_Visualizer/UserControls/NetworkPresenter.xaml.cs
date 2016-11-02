@@ -35,6 +35,7 @@ namespace NEAT_Visualizer.UserControls
     {
       if (Network != null) // no need to draw when no network is available.
       {
+        //TODO debug last generation 2nd species 4th (nr.3) network
         var neuronsDrawingInformation = new Dictionary<Neuron, Point>();
 
         // construct all neurons

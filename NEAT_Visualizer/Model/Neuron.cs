@@ -15,6 +15,8 @@ namespace NEAT_Visualizer.Model
     /// </summary>
     /// <value>Layer, inputs neurons (and bias) have 0, outputs the highest layer</value>
     public int Layer { get; set; }
+
+    public override string ToString() => $"Layer={Layer}, IncomingConnectionCount={IncomingConnections.Count}";
   }
 }
 
